@@ -1,4 +1,23 @@
+import java.text.SimpleDateFormat
+
 apply plugin: 'com.android.application'
+
+def versionFile = rootProject.file("app/version.properties")
+def int verCode
+def int verPrimary, verSecondary, verOptional
+def String verName
+
+if (versionFile.canRead()) {
+    def versionProperty = new Properties();
+    versionProperty.load(new FileInputStream(versionFile))
+    verCode      = versionProperty['VERSION_CODE'].toInteger()
+    verPrimary   = versionProperty['VN_PRIMARY'].toInteger()
+    verSecondary = versionProperty['VN_SECONDARY'].toInteger()
+    verOptional  = versionProperty['VN_OPTIONAL'].toInteger()
+    verName      = "" + verPrimary.toString() + "." + verSecondary.toString() + "." + verOptional.toString()
+} else {
+    throw new GradleException("Couldn't read version.properties")
+}
 
 def keyStorePropertyFile = rootProject.file("app/keystore.properties")
 def keyStoreFilePath = rootProject.file("app/lecturesapp.jks")
@@ -21,8 +40,8 @@ android {
         applicationId "com.bagasnasution.lecturesapp"
         minSdkVersion 21
         targetSdkVersion 25
-        versionCode 1
-        versionName "0.1.1"
+        versionCode verCode
+        versionName verName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -32,10 +51,59 @@ android {
             signingConfig signingConfigs.config
         }
         debug {
+
+        }
+    }
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            if (output.outputFile.name.contains("app-release")) {
+                output.outputFile = new File(output.outputFile.parent,
+                        output.outputFile.name.replace("app-release", "Lectures App -r." + verCode + " v." + verName))
+            }
+            else {
+                output.outputFile = new File(output.outputFile.parent,
+                        output.outputFile.name.replace("app-debug", "Lectures App -b." + verCode + " v." + verName))
+            }
         }
     }
     productFlavors {
     }
+
+}
+
+ext.autoIncrementVersionForDebug = {
+    if (versionFile.canRead()) {
+        def versionProperty = new Properties()
+        versionProperty.load(new FileInputStream(versionFile))
+        def int versionInc = versionProperty['VN_OPTIONAL'].toInteger() + 1
+        versionProperty['VN_OPTIONAL'] = versionInc.toString()
+        versionProperty.store(versionFile.newWriter(), null)
+    } else {
+        throw new GradleException("Auto increment for debug has an Error")
+    }
+}
+
+ext.autoIncrementVersionRelease = {
+    if (versionFile.canRead()) {
+        def versionProperty = new Properties()
+        versionProperty.load(new FileInputStream(versionFile))
+        def int versionInc = versionProperty['VN_SECONDARY'].toInteger() + 1
+        def int toZero = 0
+        versionProperty['VN_OPTIONAL']  = toZero.toString()
+        versionProperty['VN_SECONDARY'] = versionInc.toString()
+        versionProperty.store(versionFile.newWriter(), null)
+    } else {
+        throw new GradleException("Auto increment for release has an Error")
+    }
+}
+
+gradle.taskGraph.whenReady { taskGraph ->
+    if (taskGraph.hasTask(assembleDebug)) {
+        autoIncrementVersionForDebug()
+    } else if (taskGraph.hasTask(assembleRelease)) {
+        autoIncrementVersionRelease()
+    }
+
 }
 
 dependencies {
