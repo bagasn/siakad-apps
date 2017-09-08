@@ -6,7 +6,5 @@ import android.support.v7.app.AppCompatActivity;
  * Created by Bagas on 24/08/2017.
  */
 
-public class ProjectActivity extends AppCompatActivity {
-
-
+public abstract class AppCustomActivity extends AppCompatActivity {
 }
