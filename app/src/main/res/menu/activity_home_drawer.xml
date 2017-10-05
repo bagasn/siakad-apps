@@ -12,6 +12,10 @@
             android:icon="@drawable/ic_menu_list_black_24dp"
             android:title="Mata Kuliah" />
         <item
+            android:id="@+id/nav_jadwal"
+            android:icon="@drawable/ic_schedule_black_24dp"
+            android:title="Jadwal Kuliah" />
+        <item
             android:id="@+id/nav_totalSks"
             android:icon="@drawable/ic_menu_assessment_black_24dp"
             android:title="Total SKS" />
