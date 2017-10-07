@@ -2,16 +2,17 @@ package com.bagasnasution.lecturesapp;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.bagasnasution.lecturesapp.app.engine.AppFragment;
 
 /**
  * Created by Bagas on 23/08/2017.
  */
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends AppFragment {
 
     @Nullable
     @Override

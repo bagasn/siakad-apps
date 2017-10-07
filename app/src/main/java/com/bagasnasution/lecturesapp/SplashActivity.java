@@ -4,9 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.bagasnasution.lecturesapp.app.engine.AppCustomActivity;
+import com.bagasnasution.lecturesapp.app.engine.AppActivity;
 
-public class SplashActivity extends AppCustomActivity {
+public class SplashActivity extends AppActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -21,7 +21,7 @@ public class SplashActivity extends AppCustomActivity {
             @Override
             public void run() {
                 try {
-                    sleep(2000);
+                    sleep(1000);
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {

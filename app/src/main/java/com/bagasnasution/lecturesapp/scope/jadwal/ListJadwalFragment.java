@@ -7,14 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bagasnasution.lecturesapp.R;
-import com.bagasnasution.lecturesapp.app.engine.AppCustomFragment;
+import com.bagasnasution.lecturesapp.app.engine.AppFragment;
 
-public class ListJadwalFragment extends AppCustomFragment {
+public class ListJadwalFragment extends AppFragment {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
-        return super.onCreateView(inflater, container, savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_jadwal_kuliah, container, false);
+        return view;
     }
 }
