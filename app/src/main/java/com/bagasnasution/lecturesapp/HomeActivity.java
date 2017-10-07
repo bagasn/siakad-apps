@@ -74,6 +74,9 @@ public class HomeActivity extends AppCompatActivity
             case R.id.nav_matkul:
                 Toast.makeText(this, "matkul", Toast.LENGTH_SHORT).show();
                 return true;
+            case R.id.nav_jadwal:
+                Toast.makeText(this, "Jadwal", Toast.LENGTH_SHORT).show();
+                return true;
             case R.id.nav_totalSks:
                 Toast.makeText(this, "sks", Toast.LENGTH_SHORT).show();
                 return true;

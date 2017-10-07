@@ -8,8 +8,8 @@
     tools:context="com.bagasnasution.lecturesapp.HomeActivity"
     tools:showIn="@layout/app_bar_home">
 
-    <fragment
-        android:id="@+id/fragment"
+    <FrameLayout
+        android:id="@+id/frlyt_fragment"
         android:name="com.bagasnasution.lecturesapp.HomeFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
