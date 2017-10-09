@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.bagasnasution.lecturesapp.app.engine.AppActivity;
 import com.bagasnasution.lecturesapp.app.engine.AppFragment;
 import com.bagasnasution.lecturesapp.scope.jadwal.ListJadwalFragment;
+import com.bagasnasution.lecturesapp.scope.sks.SksFragment;
 
 public class HomeActivity extends AppActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -93,6 +94,8 @@ public class HomeActivity extends AppActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
 
+        if (item.isChecked()) return false;
+
         AppFragment fragment = null;
 
         switch (item.getItemId()) {
@@ -106,7 +109,7 @@ public class HomeActivity extends AppActivity
                 fragment = new ListJadwalFragment();
                 break;
             case R.id.nav_totalSks:
-                Toast.makeText(this, "sks", Toast.LENGTH_SHORT).show();
+                fragment = new SksFragment();
                 break;
             case R.id.nav_bayaran:
                 Toast.makeText(this, "Bayaran", Toast.LENGTH_SHORT).show();
