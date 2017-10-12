@@ -6,4 +6,11 @@ public class Config {
     /* DATABASE DECLARATION */
     public static final String DATABASE_NAME = "lecturesapp/db/lectapp.db";
     public static final int DATABASE_VERSION = 1;
+
+    /* Backend Declaration */
+    public static final String BASE_URL = "";
+
+
+
+
 }
