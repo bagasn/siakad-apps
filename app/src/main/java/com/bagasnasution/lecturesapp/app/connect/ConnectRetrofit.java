@@ -4,8 +4,10 @@ package com.bagasnasution.lecturesapp.app.connect;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.bagasnasution.lecturesapp.app.config.Config;
+import com.bagasnasution.lecturesapp.app.model.ResponseDefault;
 import com.bagasnasution.lecturesapp.app.model.ResponseLogin;
 
 import java.util.HashMap;
@@ -52,20 +54,41 @@ public class ConnectRetrofit {
         return p;
     }
 
-    public static synchronized void login(Context context, HashMap<String, String> params, final OnResponse<ResponseLogin> listener) {
+    private static boolean isSuccess(String responseCode) {
+        if (responseCode.equals(Config.API_CODE_SUCCESS)) {
+            return true;
+        }
+        return false;
+    }
+
+    private static Toast showMessage(Context context, String code, String message) {
+        Toast toast = new Toast(context);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setText(message + " [" + code + "]");
+        return toast;
+    }
+
+    public static synchronized void login(final Context context, HashMap<String, String> params, final OnResponse<ResponseLogin> listener) {
         final ProgressDialog p = initProgressDialog(context);
         p.show();
 
         getConnection().login(params).enqueue(new Callback<ResponseLogin>() {
             @Override
             public void onResponse(Call<ResponseLogin> call, Response<ResponseLogin> response) {
-                listener.onResponse(call, response);
+                if (isSuccess(response.body().getCode())) {
+                    listener.onResponse(call, response);
+                }
+                else {
+                    showMessage(context, response.body().getCode(), response.body().getMessage())
+                            .show();
+                }
                 p.dismiss();
             }
 
             @Override
             public void onFailure(Call<ResponseLogin> call, Throwable throwable) {
                 listener.onFailure(call, throwable);
+                p.dismiss();
             }
         });
 
