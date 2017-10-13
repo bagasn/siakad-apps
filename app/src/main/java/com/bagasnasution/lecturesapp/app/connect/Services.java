@@ -4,9 +4,11 @@ import com.bagasnasution.lecturesapp.app.model.ResponseLogin;
 
 import java.util.HashMap;
 
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
 import retrofit2.http.POST;
 import retrofit2.http.Multipart;
 import retrofit2.http.Part;
@@ -17,9 +19,12 @@ import retrofit2.http.Part;
 
 public interface Services {
 
-    @POST
+    @Multipart
+    @POST("login.php")
     Call<ResponseLogin> login(
-            @Body HashMap<String, String> params
+            @Part("Token")      RequestBody token,
+            @Part("Username")   RequestBody username,
+            @Part("Password")   RequestBody password
     );
 
 }

@@ -12,7 +12,9 @@ import com.bagasnasution.lecturesapp.app.model.ResponseLogin;
 
 import java.util.HashMap;
 
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,8 +23,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ConnectRetrofit {
-    private static final int timeout = 10000;
+    private static final int timeout = 20000;
     private static final String BASE_URL = Config.BASE_URL;
+    private static final String TOKEN = Config.API_TOKEN;
 
     private static Retrofit getRetrofit() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -61,26 +64,26 @@ public class ConnectRetrofit {
         return false;
     }
 
-    private static Toast showMessage(Context context, String code, String message) {
-        Toast toast = new Toast(context);
-        toast.setDuration(Toast.LENGTH_LONG);
-        toast.setText(message + " [" + code + "]");
-        return toast;
+    private static void showMessage(Context context, String code, String message) {
+        Toast.makeText(context, code + ": " + message, Toast.LENGTH_LONG).show();
     }
 
-    public static synchronized void login(final Context context, HashMap<String, String> params, final OnResponse<ResponseLogin> listener) {
+    public static synchronized void login(final Context context, String username, String password, final OnResponse<ResponseLogin> listener) {
         final ProgressDialog p = initProgressDialog(context);
         p.show();
 
-        getConnection().login(params).enqueue(new Callback<ResponseLogin>() {
+        RequestBody token = RequestBody.create(MediaType.parse("text/plain"), TOKEN);
+        RequestBody rUsername = RequestBody.create(MediaType.parse("text/plain"), username);
+        RequestBody rPassword = RequestBody.create(MediaType.parse("text/plain"), password);
+
+        getConnection().login(token, rUsername, rPassword).enqueue(new Callback<ResponseLogin>() {
             @Override
             public void onResponse(Call<ResponseLogin> call, Response<ResponseLogin> response) {
                 if (isSuccess(response.body().getCode())) {
                     listener.onResponse(call, response);
                 }
                 else {
-                    showMessage(context, response.body().getCode(), response.body().getMessage())
-                            .show();
+                    showMessage(context, response.body().getCode(), response.body().getMessage());
                 }
                 p.dismiss();
             }
