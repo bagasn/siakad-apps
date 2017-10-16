@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.bagasnasution.lecturesapp.app.engine.AppActivity;
+import com.bagasnasution.lecturesapp.app.engine.AppHelper;
 
 public class SplashActivity extends AppActivity {
 
@@ -16,7 +17,7 @@ public class SplashActivity extends AppActivity {
         initComponent();
     }
 
-    public void initComponent() {
+    private void initComponent() {
         Thread timer = new Thread(){
             @Override
             public void run() {
@@ -25,12 +26,25 @@ public class SplashActivity extends AppActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {
-                    startActivity(new Intent(SplashActivity.this, HomeActivity.class));
-                    finish();
+                    validasiLogin();
                 }
             }
         };
         timer.start();
+    }
+
+    private synchronized boolean validasiLogin() {
+        AppHelper helper = new AppHelper().getInstance(this);
+        if (helper.isLoginInitiate()) {
+            startActivity(new Intent(this, HomeActivity.class));
+            finish();
+            return true;
+        }
+        else {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+        }
+        return false;
     }
 
 

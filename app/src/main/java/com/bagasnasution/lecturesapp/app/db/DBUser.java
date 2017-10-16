@@ -1,6 +1,9 @@
 package com.bagasnasution.lecturesapp.app.db;
 
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.util.Log;
 
 public class DBUser {
 
@@ -33,9 +36,34 @@ public class DBUser {
             + ")";
 
 
-    public static boolean insertDataUser() {
+    public static boolean insertDataUser(Context context, User user) {
+
+        DBHandler handler = new DBHandler(context);
+        long rowId = handler.insertDataUser(getContentValues(user));
+
+        if (rowId != -1) {
+            return true;
+        }
+        Log.e("DBUser", "---Inset into db user--->> Row id: " + rowId);
 
         return false;
+    }
+
+    private static ContentValues getContentValues(User user) {
+        ContentValues cv = new ContentValues();
+
+        cv.put("npm", user.getNpm());
+        cv.put("nama", user.getNama());
+        cv.put("tempat_lahir", user.getTempatLahir());
+        cv.put("tgl_lahir", user.getTanggalLahir());
+        cv.put("jenis_kel", user.getJenisKelamin());
+        cv.put("alamat", user.getAlamat());
+        cv.put("email", user.getEmail());
+        cv.put("tahun_akdm", user.getTahunAkademik());
+        cv.put("fakultas", user.getFakultas());
+        cv.put("prodi", user.getProdi());
+
+        return cv;
     }
 
     public static User getDataUser() {
@@ -43,7 +71,7 @@ public class DBUser {
         return null;
     }
 
-    public class User {
+    public static class User {
         private String id;
         private String npm;
         private String nama;

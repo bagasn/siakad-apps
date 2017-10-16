@@ -48,15 +48,27 @@ public class DBHandler {
             } catch (SQLiteException e) {
                 Log.e(TAG, "---->> Error : " + e.toString());
             } finally {
+                onCreate(db);
                 Log.e(TAG, "---->>> Delete Table Succes");
             }
         }
     }
 
-    public void insertDataUser(ContentValues values) throws SQLiteException {
+    public long insertDataUser(ContentValues values) throws SQLiteException {
         db = helper.getWritableDatabase();
-        db.insert(DBUser.TABLE_NAME, null, values);
+        long rowId = db.insert(DBUser.TABLE_NAME, null, values);
+        if (rowId == -1)
+            throw new SQLiteException("Fucking Insert is Failed");
         Log.e(TAG, "----->> Insert DB User Berhasil");
         db.close();
+        return rowId;
     }
+
+    public int deleteDataUser() throws SQLiteException {
+        db = helper.getWritableDatabase();
+        int delId = db.delete(DBUser.TABLE_NAME, null, null);
+        db.close();
+        return delId;
+    }
+
 }

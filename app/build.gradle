@@ -1,5 +1,3 @@
-import java.text.SimpleDateFormat
-
 apply plugin: 'com.android.application'
 
 def versionFile = rootProject.file("app/version.properties")
@@ -39,8 +37,7 @@ android {
     defaultConfig {
         applicationId "com.bagasnasution.lecturesapp"
         minSdkVersion 21
-        targetSdkVersion 25
-        versionCode verCode
+        targetSdkVersion 24
         versionName verName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -51,7 +48,7 @@ android {
             signingConfig signingConfigs.config
         }
         debug {
-
+            signingConfig signingConfigs.config
         }
     }
     applicationVariants.all { variant ->
@@ -115,8 +112,8 @@ dependencies {
     compile files('libs/gson-2.6.1.jar')
     compile files('libs/okhttp-3.6.0.jar')
     compile files('libs/retrofit-2.3.0.jar')
-//    compile files('libs/logging-interceptor-3.6.0.jar')
-//    compile files('libs/okio-1.11.0.jar')
+    //    compile files('libs/logging-interceptor-3.6.0.jar')
+    //    compile files('libs/okio-1.11.0.jar')
     compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:support-v4:25.3.1'

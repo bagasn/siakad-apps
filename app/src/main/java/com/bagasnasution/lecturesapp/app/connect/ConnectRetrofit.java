@@ -3,14 +3,10 @@ package com.bagasnasution.lecturesapp.app.connect;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.bagasnasution.lecturesapp.app.config.Config;
-import com.bagasnasution.lecturesapp.app.model.ResponseDefault;
 import com.bagasnasution.lecturesapp.app.model.ResponseLogin;
-
-import java.util.HashMap;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -23,7 +19,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ConnectRetrofit {
-    private static final int timeout = 20000;
+    private static final int timeout = 20;
     private static final String BASE_URL = Config.BASE_URL;
     private static final String TOKEN = Config.API_TOKEN;
 
@@ -96,8 +92,6 @@ public class ConnectRetrofit {
         });
 
     }
-
-
 
 
     public interface OnResponse<N> {

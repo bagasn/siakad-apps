@@ -7,5 +7,6 @@
     <string name="action_settings">Settings</string>
 
     <string name="fragment_home">Home Fragment</string>
+    <string name="app_description">Lectures App by Bagas Nasution</string>
 
 </resources>

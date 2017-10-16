@@ -2,6 +2,7 @@ package com.bagasnasution.lecturesapp;
 
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -11,12 +12,16 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bagasnasution.lecturesapp.app.db.DBHandler;
 import com.bagasnasution.lecturesapp.app.engine.AppActivity;
 import com.bagasnasution.lecturesapp.app.engine.AppFragment;
+import com.bagasnasution.lecturesapp.app.engine.AppHelper;
 import com.bagasnasution.lecturesapp.scope.jadwal.ListJadwalFragment;
 import com.bagasnasution.lecturesapp.scope.sks.SksFragment;
 
@@ -42,6 +47,9 @@ public class HomeActivity extends AppActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        TextView textVersionName = (TextView) findViewById(R.id.txvw_versionName);
+        textVersionName.setText("Version " + BuildConfig.VERSION_NAME);
 
         // Fragment Initiate
         fragmentTransaction = getFragmentManager().beginTransaction();
@@ -83,6 +91,8 @@ public class HomeActivity extends AppActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.itmn_about) {
+            String versionName = BuildConfig.VERSION_NAME;
+            Toast.makeText(this, versionName, Toast.LENGTH_LONG).show();
             return true;
         }
 
@@ -124,19 +134,61 @@ public class HomeActivity extends AppActivity
                 Toast.makeText(this, "Bayaran", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_logout:
-                finish();
+                onLogout();
                 return false;
-        }
-
-        if (fragment != null) {
-            replaceFragmentTo(RESOURCE_FRAGMENT, fragment);
-            return true;
         }
 
         // Handle navigation view item clicks here.
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
 
+        if (fragment != null) {
+            replaceFragmentTo(RESOURCE_FRAGMENT, fragment);
+            return true;
+        }
+
         return false;
     }
+
+    private void onLogout() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setMessage("Are you sure want to logout from this app?");
+        alert.setNegativeButton("Cancel", null);
+        alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                deleteAllRow();
+            }
+        });
+        alert.show();
+    }
+
+    private void deleteAllRow() {
+        DBHandler handler = new DBHandler(this);
+        int delId = 0;
+        try {
+            delId = handler.deleteDataUser();
+        }
+        catch (SQLiteException e) {
+            Log.e("Logout", "---Logout Failed--->>> " + e.toString());
+            Toast.makeText(this, "Error when delete data user", Toast.LENGTH_LONG).show();
+        }
+        finally {
+            Log.e("Logout", "---Logout Success--->>> RowDelete: " + delId );
+            try {
+                AppHelper helper = new AppHelper().getInstance(this);
+                helper.removeLoginInitiate();
+            }
+            catch (Exception e) {
+                Log.e("SharedPreferences", "--Error-->> " + e.toString());
+            }
+            finally {
+                finish();
+            }
+        }
+    }
+
+
+
+
 }

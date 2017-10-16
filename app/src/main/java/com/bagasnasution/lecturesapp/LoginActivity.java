@@ -1,6 +1,7 @@
 package com.bagasnasution.lecturesapp;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -10,7 +11,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.bagasnasution.lecturesapp.app.connect.ConnectRetrofit;
+import com.bagasnasution.lecturesapp.app.db.DBUser;
 import com.bagasnasution.lecturesapp.app.engine.AppActivity;
+import com.bagasnasution.lecturesapp.app.engine.AppHelper;
 import com.bagasnasution.lecturesapp.app.model.ResponseLogin;
 
 import retrofit2.Call;
@@ -65,17 +68,40 @@ public class LoginActivity extends AppActivity implements View.OnClickListener{
         ConnectRetrofit.login(this, username, password, new ConnectRetrofit.OnResponse<ResponseLogin>() {
             @Override
             public void onResponse(Call<ResponseLogin> call, Response<ResponseLogin> response) {
-                Toast.makeText(getApplicationContext(), response.body().toString(), Toast.LENGTH_LONG).show();
-                Log.e("Response", "--- Login result --->> " + response.body().toString());
+                onLoginSuccess(response);
             }
 
             @Override
             public void onFailure(Call<ResponseLogin> call, Throwable throwable) {
                 Toast.makeText(getApplicationContext(), throwable.toString(), Toast.LENGTH_LONG).show();
-                Log.e("Failure", "--- Login result --->> ", throwable);
+                Log.e("Failure", "--- Login Failure --->> ", throwable);
             }
         });
+    }
 
+    private void onLoginSuccess(Response<ResponseLogin> response) {
+        DBUser.User user = new DBUser.User();
+        ResponseLogin.Data data = response.body().getData();
+        user.setNama(data.getNama());
+        user.setNpm(data.getnPM());
+        user.setAlamat(data.getAlamat());
+        user.setEmail(data.getEmail());
+        user.setFakultas(data.getFakultas());
+        user.setProdi(data.getProdi());
+        user.setJenisKelamin(data.getJenisKelamin());
+        user.setTempatLahir(data.getTempatLahir());
+        user.setTanggalLahir(data.getTglLahir());
+        user.setTahunAkademik(data.getTahunAkademik());
+
+        if (DBUser.insertDataUser(this, user)) {
+            new AppHelper().getInstance(this).setLoginInitiate(true);
+            startActivity(new Intent(this, HomeActivity.class));
+            finish();
+        }
+        else {
+            Toast.makeText(this, "DataBaseExcaption", Toast.LENGTH_SHORT).show();
+        }
 
     }
+
 }
