@@ -14,14 +14,14 @@ public class ResponseLogin extends ResponseDefault {
 
     @SerializedName("Data")
     @Expose
-    private List<Data> dataList;
+    private Data data;
 
-    public List<Data> getDataList() {
-        return dataList;
+    public Data getData() {
+        return data;
     }
 
-    public void setDataList(List<Data> dataList) {
-        this.dataList = dataList;
+    public void setData(Data data) {
+        this.data = data;
     }
 
     public class Data implements Serializable {

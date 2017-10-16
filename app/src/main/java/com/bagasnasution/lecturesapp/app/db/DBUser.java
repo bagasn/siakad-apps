@@ -31,4 +31,118 @@ public class DBUser {
             + FIELD_FAKULTAS         + " TEXT, "
             + FIELD_PRODI            + " TEXT "
             + ")";
+
+
+    public static boolean insertDataUser() {
+
+        return false;
+    }
+
+    public static User getDataUser() {
+
+        return null;
+    }
+
+    public class User {
+        private String id;
+        private String npm;
+        private String nama;
+        private String tempatLahir;
+        private String tanggalLahir;
+        private String jenisKelamin;
+        private String alamat;
+        private String email;
+        private String tahunAkademik;
+        private String fakultas;
+        private String prodi;
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getNpm() {
+            return npm;
+        }
+
+        public void setNpm(String npm) {
+            this.npm = npm;
+        }
+
+        public String getNama() {
+            return nama;
+        }
+
+        public void setNama(String nama) {
+            this.nama = nama;
+        }
+
+        public String getTempatLahir() {
+            return tempatLahir;
+        }
+
+        public void setTempatLahir(String tempatLahir) {
+            this.tempatLahir = tempatLahir;
+        }
+
+        public String getTanggalLahir() {
+            return tanggalLahir;
+        }
+
+        public void setTanggalLahir(String tanggalLahir) {
+            this.tanggalLahir = tanggalLahir;
+        }
+
+        public String getJenisKelamin() {
+            return jenisKelamin;
+        }
+
+        public void setJenisKelamin(String jenisKelamin) {
+            this.jenisKelamin = jenisKelamin;
+        }
+
+        public String getAlamat() {
+            return alamat;
+        }
+
+        public void setAlamat(String alamat) {
+            this.alamat = alamat;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public String getTahunAkademik() {
+            return tahunAkademik;
+        }
+
+        public void setTahunAkademik(String tahunAkademik) {
+            this.tahunAkademik = tahunAkademik;
+        }
+
+        public String getFakultas() {
+            return fakultas;
+        }
+
+        public void setFakultas(String fakultas) {
+            this.fakultas = fakultas;
+        }
+
+        public String getProdi() {
+            return prodi;
+        }
+
+        public void setProdi(String prodi) {
+            this.prodi = prodi;
+        }
+    }
+
 }
