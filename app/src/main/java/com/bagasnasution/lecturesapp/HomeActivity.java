@@ -81,7 +81,7 @@ public class HomeActivity extends AppActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.home, menu);
+//        getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
 
@@ -92,7 +92,7 @@ public class HomeActivity extends AppActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.itmn_about) {
             String versionName = BuildConfig.VERSION_NAME;
-            Toast.makeText(this, versionName, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Version " + versionName, Toast.LENGTH_LONG).show();
             return true;
         }
 
