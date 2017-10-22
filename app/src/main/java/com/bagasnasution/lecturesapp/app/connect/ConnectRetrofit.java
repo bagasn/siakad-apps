@@ -25,6 +25,7 @@ public class ConnectRetrofit {
 
     private static Retrofit getRetrofit() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.HEADERS);
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
@@ -65,9 +66,6 @@ public class ConnectRetrofit {
     }
 
     public static synchronized void login(final Context context, String username, String password, final OnResponse<ResponseLogin> listener) {
-        final ProgressDialog p = initProgressDialog(context);
-        p.show();
-
         RequestBody token = RequestBody.create(MediaType.parse("text/plain"), TOKEN);
         RequestBody rUsername = RequestBody.create(MediaType.parse("text/plain"), username);
         RequestBody rPassword = RequestBody.create(MediaType.parse("text/plain"), password);
@@ -75,19 +73,12 @@ public class ConnectRetrofit {
         getConnection().login(token, rUsername, rPassword).enqueue(new Callback<ResponseLogin>() {
             @Override
             public void onResponse(Call<ResponseLogin> call, Response<ResponseLogin> response) {
-                if (isSuccess(response.body().getCode())) {
-                    listener.onResponse(call, response);
-                }
-                else {
-                    showMessage(context, response.body().getCode(), response.body().getMessage());
-                }
-                p.dismiss();
+                listener.onResponse(call, response);
             }
 
             @Override
             public void onFailure(Call<ResponseLogin> call, Throwable throwable) {
                 listener.onFailure(call, throwable);
-                p.dismiss();
             }
         });
 

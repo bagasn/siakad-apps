@@ -1,7 +1,9 @@
 package com.bagasnasution.lecturesapp.app.engine;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 import com.bagasnasution.lecturesapp.app.config.Config;
 
@@ -32,6 +34,29 @@ public class AppHelper {
     public void removeLoginInitiate() {
         mEditor.clear();
         mEditor.commit();
+    }
+
+    public static void showToast(Context context, String mText){
+        Toast.makeText(context, mText, Toast.LENGTH_LONG).show();
+    }
+
+    public static void showToast(Context context, String mText, String mCode){
+        Toast.makeText(context, mText + "[" + mCode + "]", Toast.LENGTH_LONG).show();
+    }
+
+    public static ProgressDialog makeProgressDialod(Context context) {
+        return makeProgressDialod(context, "Loading...");
+    }
+
+    public static ProgressDialog makeProgressDialod(Context context, String message) {
+        return makeProgressDialod(context, message, false);
+    }
+
+    public static ProgressDialog makeProgressDialod(Context context, String message, boolean cancelAble) {
+        ProgressDialog p = new ProgressDialog(context);
+        p.setMessage(message);
+        p.setCancelable(cancelAble);
+        return p;
     }
 
 }

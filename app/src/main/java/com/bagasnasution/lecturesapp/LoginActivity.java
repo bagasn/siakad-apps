@@ -1,6 +1,7 @@
 package com.bagasnasution.lecturesapp;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.bagasnasution.lecturesapp.app.config.Config;
 import com.bagasnasution.lecturesapp.app.connect.ConnectRetrofit;
 import com.bagasnasution.lecturesapp.app.db.DBUser;
 import com.bagasnasution.lecturesapp.app.engine.AppActivity;
@@ -23,21 +25,28 @@ import retrofit2.Response;
  * Created by Batavianet on 10/12/2017.
  */
 
-public class LoginActivity extends AppActivity implements View.OnClickListener{
+public class LoginActivity extends AppActivity implements View.OnClickListener {
     private Button btn_login;
     private EditText edtx_username;
     private EditText edtx_password;
+
+    private ProgressDialog pDialog;
+    private AppHelper helper;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        helper = new AppHelper().getInstance(this);
+        pDialog = AppHelper.makeProgressDialod(this);
+
         btn_login = (Button) findViewById(R.id.btn_login);
         edtx_username = (EditText) findViewById(R.id.edtx_username);
         edtx_password = (EditText) findViewById(R.id.edtx_password);
 
         btn_login.setOnClickListener(this);
+
     }
 
     @Override
@@ -50,31 +59,38 @@ public class LoginActivity extends AppActivity implements View.OnClickListener{
             Toast.makeText(this, "Username Kosong!", Toast.LENGTH_LONG).show();
             edtx_username.requestFocus();
             return;
-        }
-        else if (edtx_password.getText().toString().isEmpty()) {
+        } else if (edtx_password.getText().toString().isEmpty()) {
             Toast.makeText(this, "Password Kosong!", Toast.LENGTH_LONG).show();
             edtx_password.requestFocus();
             return;
-        }
-        else {
+        } else {
             doLogin();
         }
     }
 
     private void doLogin() {
+        pDialog.show();
         String username = edtx_username.getText().toString();
         String password = toMD5(edtx_password.getText().toString());
+
+        Log.e("SendLOGIN", "Username: " + username + ", Password: " + password);
 
         ConnectRetrofit.login(this, username, password, new ConnectRetrofit.OnResponse<ResponseLogin>() {
             @Override
             public void onResponse(Call<ResponseLogin> call, Response<ResponseLogin> response) {
-                onLoginSuccess(response);
+                if (response.body().getCode().equals(Config.API_CODE_SUCCESS)) {
+                    onLoginSuccess(response);
+                } else {
+                    AppHelper.showToast(LoginActivity.this, response.body().getMessage());
+                }
+                pDialog.dismiss();
             }
 
             @Override
             public void onFailure(Call<ResponseLogin> call, Throwable throwable) {
                 Toast.makeText(getApplicationContext(), throwable.toString(), Toast.LENGTH_LONG).show();
                 Log.e("Failure", "--- Login Failure --->> ", throwable);
+                pDialog.dismiss();
             }
         });
     }
@@ -97,8 +113,7 @@ public class LoginActivity extends AppActivity implements View.OnClickListener{
             new AppHelper().getInstance(this).setLoginInitiate(true);
             startActivity(new Intent(this, HomeActivity.class));
             finish();
-        }
-        else {
+        } else {
             Toast.makeText(this, "DataBaseExcaption", Toast.LENGTH_SHORT).show();
         }
 
