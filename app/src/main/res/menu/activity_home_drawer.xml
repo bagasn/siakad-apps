@@ -22,10 +22,12 @@
         <item
             android:id="@+id/nav_bayaran"
             android:icon="@drawable/ic_menu_dollar_black_24dp"
-            android:title="Pembayaran"/>
+            android:title="Pembayaran" />
     </group>
 
-    <item android:title="">
+    <item
+        android:menuCategory="container"
+        android:title="">
         <menu>
             <item
                 android:id="@+id/nav_logout"

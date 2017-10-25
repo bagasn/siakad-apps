@@ -75,7 +75,7 @@ ext.autoIncrementVersionForDebug = {
         versionProperty['VN_OPTIONAL'] = versionInc.toString()
         versionProperty.store(versionFile.newWriter(), null)
     } else {
-        throw new GradleException("Auto increment for debug has an Error")
+        throw new GradleException("Auto increment for debug got some problem")
     }
 }
 
@@ -89,7 +89,7 @@ ext.autoIncrementVersionRelease = {
         versionProperty['VN_SECONDARY'] = versionInc.toString()
         versionProperty.store(versionFile.newWriter(), null)
     } else {
-        throw new GradleException("Auto increment for release has an Error")
+        throw new GradleException("Auto increment for release got some problem")
     }
 }
 
