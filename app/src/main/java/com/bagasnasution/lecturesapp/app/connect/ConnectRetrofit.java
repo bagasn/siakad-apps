@@ -19,7 +19,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ConnectRetrofit {
-    private static final int timeout = 30;
+    private static final int timeout = 120;
     private static final String BASE_URL = Config.BASE_URL;
     private static final String TOKEN = Config.API_TOKEN;
 

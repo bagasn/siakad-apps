@@ -26,5 +26,4 @@ public interface Services {
             @Part("Username")   RequestBody username,
             @Part("Password")   RequestBody password
     );
-
 }
