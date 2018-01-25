@@ -11,7 +11,12 @@ public class Config {
     public static final int DATABASE_VERSION = 3;
 
     /* Backend Declaration */
+    /* Real */
     public static final String BASE_URL = "https://itandcrime.000webhostapp.com/lctrs/api/";
+
+    /* Dummy */
+//    public static final String BASE_URL = "http://10.0.2.2:8080/b/itandcrime/lctrs/api/";
+
     public static final String API_TOKEN = "3add0f3378dc0fba4bbf2fab59a312cc";
 
     public static final String API_CODE_SUCCESS = "0000";

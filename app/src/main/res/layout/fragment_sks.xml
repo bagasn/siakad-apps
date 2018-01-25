@@ -8,6 +8,7 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="3dp"
         app:cardCornerRadius="0dp"
         app:cardElevation="2dp"
         app:contentPadding="5dp">
@@ -37,9 +38,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="10dp"
                     android:minWidth="50dp"
-                    android:text="120"
+                    android:text="0"
                     android:textAlignment="center"
-                    android:textColor="@android:color/holo_red_dark"
                     android:textSize="16dp"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -65,14 +65,121 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="10dp"
                     android:minWidth="50dp"
-                    android:text="T"
+                    android:text="0"
                     android:textAlignment="center"
-                    android:textColor="@android:color/holo_red_dark"
                     android:textSize="16dp"
                     android:textStyle="bold" />
             </RelativeLayout>
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardCornerRadius="0dp"
+            app:cardElevation="2dp"
+            app:contentPaddingBottom="6dp"
+            app:contentPaddingLeft="12dp"
+            app:contentPaddingRight="12dp"
+            app:contentPaddingTop="6dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="Mata Kuliah"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="45dp"
+                    android:layout_height="match_parent"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="SMT"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txvw_sks"
+                    android:layout_width="45dp"
+                    android:layout_height="match_parent"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="SKS"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txvw_nilai"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="Nilai"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:id="@+id/view_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:id="@+id/prg_loading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/txvw_errorMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Connection problem\nPlease try again"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rclr_sks"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+
+    </LinearLayout>
+
 
 </LinearLayout>

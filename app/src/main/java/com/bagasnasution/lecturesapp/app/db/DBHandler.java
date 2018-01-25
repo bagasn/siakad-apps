@@ -2,6 +2,7 @@ package com.bagasnasution.lecturesapp.app.db;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -62,6 +63,31 @@ public class DBHandler {
         Log.e(TAG, "----->> Insert DB User Berhasil");
         db.close();
         return rowId;
+    }
+
+    public DBUser.User getDataUser() throws SQLiteException {
+        db = helper.getReadableDatabase();
+        Cursor cursor = db.query(DBUser.TABLE_NAME, DBUser.FIELDS, null, null, null, null, null);
+
+        DBUser.User user = new DBUser.User();
+
+        if (cursor.moveToFirst()) {
+            user.setNpm(cursor.getString(1));
+            user.setNama(cursor.getString(2));
+            user.setTempatLahir(cursor.getString(3));
+            user.setTanggalLahir(cursor.getString(4));
+            user.setJenisKelamin(cursor.getString(5));
+            user.setAlamat(cursor.getString(6));
+            user.setEmail(cursor.getString(7));
+            user.setTahunAkademik(cursor.getString(8));
+            user.setFakultas(cursor.getString(9));
+            user.setProdi(cursor.getString(10));
+        }
+
+        cursor.close();
+        db.close();
+
+        return user;
     }
 
     public int deleteDataUser() throws SQLiteException {

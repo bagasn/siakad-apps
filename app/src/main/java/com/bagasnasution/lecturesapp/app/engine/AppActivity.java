@@ -1,12 +1,16 @@
 package com.bagasnasution.lecturesapp.app.engine;
 
-import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.support.annotation.IdRes;
 import android.app.FragmentManager;
+import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+
+import com.bagasnasution.lecturesapp.HomeFragment;
+import com.bagasnasution.lecturesapp.R;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -24,6 +28,12 @@ public abstract class AppActivity extends AppCompatActivity {
     * Code To Replace Framgent
     *
     * */
+
+    protected void addFragment(@IdRes int resId, Fragment fragment, @Nullable @StringRes int tag) {
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.add(resId, new HomeFragment(), tag == 0 ? null : getString(tag));
+        fragmentTransaction.commit();
+    }
 
     protected void replaceFragmentTo(@IdRes int layoutRes, AppFragment fragment){
         replaceFragmentTo(layoutRes, fragment, 0, 0, false);
