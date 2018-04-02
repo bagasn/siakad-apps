@@ -4,11 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="1dp"
-    android:elevation="1dp"
-    app:contentPaddingBottom="6dp"
-    app:contentPaddingLeft="12dp"
-    app:contentPaddingRight="12dp"
-    app:contentPaddingTop="6dp">
+    android:layout_marginTop="0.5dp"
+    android:elevation="0.2dp"
+    app:cardCornerRadius="0dp"
+    app:contentPaddingBottom="2dp"
+    app:contentPaddingLeft="0dp"
+    app:contentPaddingRight="0dp"
+    app:contentPaddingTop="2dp">
 
     <LinearLayout
         android:id="@+id/container"
@@ -23,36 +25,58 @@
             android:layout_weight="1"
             android:ellipsize="end"
             android:maxLines="2"
+            android:padding="5dp"
             android:text="Nasi goreng campur tahi"
             android:textColor="@color/primary_text" />
 
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/divider" />
+
         <TextView
             android:id="@+id/txvw_smt"
-            android:layout_width="45dp"
+            android:layout_width="40dp"
             android:layout_height="match_parent"
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
             android:text="0"
             android:textAlignment="center" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/divider" />
 
         <TextView
             android:id="@+id/txvw_sks"
-            android:layout_width="45dp"
+            android:layout_width="40dp"
             android:layout_height="match_parent"
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
             android:text="0"
             android:textAlignment="center" />
 
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/divider" />
+
         <TextView
             android:id="@+id/txvw_nilai"
-            android:layout_width="45dp"
+            android:layout_width="40dp"
             android:layout_height="match_parent"
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
             android:text="0"
             android:textAlignment="center" />
 
