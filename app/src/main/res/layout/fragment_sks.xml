@@ -150,7 +150,7 @@
 
                 <TextView
                     android:id="@+id/txvw_nilai"
-                    android:layout_width="40dp"
+                    android:layout_width="45dp"
                     android:layout_height="match_parent"
                     android:ellipsize="end"
                     android:maxLines="1"
