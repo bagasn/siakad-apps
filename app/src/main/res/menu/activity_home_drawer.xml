@@ -1,39 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/cat_1"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
             android:checked="true"
             android:icon="@drawable/ic_menu_home_black_24dp"
             android:title="Home" />
         <item
-            android:id="@+id/nav_matkul"
-            android:icon="@drawable/ic_menu_list_black_24dp"
-            android:title="Mata Kuliah" />
-        <item
             android:id="@+id/nav_jadwal"
             android:icon="@drawable/ic_schedule_black_24dp"
             android:title="Jadwal Kuliah" />
         <item
-            android:id="@+id/nav_totalSks"
+            android:id="@+id/nav_nilai"
             android:icon="@drawable/ic_menu_assessment_black_24dp"
             android:title="Total SKS" />
         <item
-            android:id="@+id/nav_bayaran"
+            android:id="@+id/nav_matkul"
+            android:icon="@drawable/ic_menu_list_black_24dp"
+            android:title="Mata Kuliah" />
+        <item
+            android:id="@+id/nav_krs"
             android:icon="@drawable/ic_menu_dollar_black_24dp"
-            android:title="Pembayaran" />
+            android:title="Kartu Rencana Studi" />
     </group>
 
-    <item
-        android:menuCategory="container"
-        android:title="">
-        <menu>
-            <item
-                android:id="@+id/nav_logout"
-                android:icon="@drawable/ic_menu_power_black_24dp"
-                android:title="Logout" />
-        </menu>
-    </item>
+    <group
+        android:id="@+id/cat_2"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_menu_power_black_24dp"
+            android:title="Logout" />
+        <item
+            android:checkable="false"
+            android:enabled="false"
+            android:title="" />
+    </group>
 
 </menu>

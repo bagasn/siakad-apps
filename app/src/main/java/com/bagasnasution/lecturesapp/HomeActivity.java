@@ -127,10 +127,10 @@ public class HomeActivity extends AppActivity
             case R.id.nav_jadwal:
                 fragment = new ListJadwalFragment();
                 break;
-            case R.id.nav_totalSks:
+            case R.id.nav_nilai:
                 fragment = new SksFragment();
                 break;
-            case R.id.nav_bayaran:
+            case R.id.nav_krs:
                 Toast.makeText(this, "Bayaran", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_logout:
