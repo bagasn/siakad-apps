@@ -14,12 +14,8 @@ public class DBUser {
     public static final String FIELD_ID = "_id";
     public static final String FIELD_NPM = "npm";
     public static final String FIELD_NAMA = "nama";
-    public static final String FIELD_TEMPAT_LAHIR = "tempat_lahir";
-    public static final String FIELD_TANGGAL_LAHIR = "tgl_lahir";
-    public static final String FIELD_JENIS_KELAMIN = "jenis_kel";
-    public static final String FIELD_ALAMAT = "alamat";
     public static final String FIELD_EMAIL = "email";
-    public static final String FIELD_TAHUN_AKADEMIK = "tahun_akdm";
+    public static final String FIELD_JENIS_KELAMIN = "jenis_kel";
     public static final String FIELD_FAKULTAS = "fakultas";
     public static final String FIELD_PRODI = "prodi";
 
@@ -27,12 +23,8 @@ public class DBUser {
             + FIELD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + FIELD_NPM + " TEXT, "
             + FIELD_NAMA + " TEXT, "
-            + FIELD_TEMPAT_LAHIR + " TEXT, "
-            + FIELD_TANGGAL_LAHIR + " TEXT, "
-            + FIELD_JENIS_KELAMIN + " TEXT, "
-            + FIELD_ALAMAT + " TEXT, "
             + FIELD_EMAIL + " TEXT, "
-            + FIELD_TAHUN_AKADEMIK + " TEXT, "
+            + FIELD_JENIS_KELAMIN + " TEXT, "
             + FIELD_FAKULTAS + " TEXT, "
             + FIELD_PRODI + " TEXT "
             + ")";
@@ -41,12 +33,8 @@ public class DBUser {
             FIELD_ID,
             FIELD_NPM,
             FIELD_NAMA,
-            FIELD_TEMPAT_LAHIR,
-            FIELD_TANGGAL_LAHIR,
-            FIELD_JENIS_KELAMIN,
-            FIELD_ALAMAT,
             FIELD_EMAIL,
-            FIELD_TAHUN_AKADEMIK,
+            FIELD_JENIS_KELAMIN,
             FIELD_FAKULTAS,
             FIELD_PRODI
     };
@@ -70,12 +58,8 @@ public class DBUser {
 
         cv.put("npm", user.getNpm());
         cv.put("nama", user.getNama());
-        cv.put("tempat_lahir", user.getTempatLahir());
-        cv.put("tgl_lahir", user.getTanggalLahir());
-        cv.put("jenis_kel", user.getJenisKelamin());
-        cv.put("alamat", user.getAlamat());
         cv.put("email", user.getEmail());
-        cv.put("tahun_akdm", user.getTahunAkademik());
+        cv.put("jenis_kel", user.getJenisKelamin());
         cv.put("fakultas", user.getFakultas());
         cv.put("prodi", user.getProdi());
 
@@ -97,12 +81,8 @@ public class DBUser {
         private String id;
         private String npm;
         private String nama;
-        private String tempatLahir;
-        private String tanggalLahir;
-        private String jenisKelamin;
-        private String alamat;
         private String email;
-        private String tahunAkademik;
+        private String jenisKelamin;
         private String fakultas;
         private String prodi;
 
@@ -130,38 +110,6 @@ public class DBUser {
             this.nama = nama;
         }
 
-        public String getTempatLahir() {
-            return tempatLahir;
-        }
-
-        public void setTempatLahir(String tempatLahir) {
-            this.tempatLahir = tempatLahir;
-        }
-
-        public String getTanggalLahir() {
-            return tanggalLahir;
-        }
-
-        public void setTanggalLahir(String tanggalLahir) {
-            this.tanggalLahir = tanggalLahir;
-        }
-
-        public String getJenisKelamin() {
-            return jenisKelamin;
-        }
-
-        public void setJenisKelamin(String jenisKelamin) {
-            this.jenisKelamin = jenisKelamin;
-        }
-
-        public String getAlamat() {
-            return alamat;
-        }
-
-        public void setAlamat(String alamat) {
-            this.alamat = alamat;
-        }
-
         public String getEmail() {
             return email;
         }
@@ -170,12 +118,12 @@ public class DBUser {
             this.email = email;
         }
 
-        public String getTahunAkademik() {
-            return tahunAkademik;
+        public String getJenisKelamin() {
+            return jenisKelamin;
         }
 
-        public void setTahunAkademik(String tahunAkademik) {
-            this.tahunAkademik = tahunAkademik;
+        public void setJenisKelamin(String jenisKelamin) {
+            this.jenisKelamin = jenisKelamin;
         }
 
         public String getFakultas() {
@@ -194,5 +142,4 @@ public class DBUser {
             this.prodi = prodi;
         }
     }
-
 }

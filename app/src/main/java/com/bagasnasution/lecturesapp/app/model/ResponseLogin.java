@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ResponseLogin extends ResponseDefault {
 
-    @SerializedName("Data")
+    @SerializedName("data")
     @Expose
     private Data data;
 
@@ -25,43 +25,34 @@ public class ResponseLogin extends ResponseDefault {
     }
 
     public class Data implements Serializable {
-        @SerializedName("NPM")
+        @SerializedName("nim")
         @Expose
-        private String nPM;
-        @SerializedName("Nama")
+        private String nim;
+        @SerializedName("nama")
         @Expose
         private String nama;
-        @SerializedName("TempatLahir")
-        @Expose
-        private String tempatLahir;
-        @SerializedName("TglLahir")
-        @Expose
-        private String tglLahir;
-        @SerializedName("JenisKelamin")
-        @Expose
-        private String jenisKelamin;
-        @SerializedName("Alamat")
-        @Expose
-        private String alamat;
-        @SerializedName("Email")
+        @SerializedName("email")
         @Expose
         private String email;
-        @SerializedName("TahunAkademik")
+        @SerializedName("jenis-kelamin")
         @Expose
-        private String tahunAkademik;
-        @SerializedName("Fakultas")
+        private String jenisKelamin;
+        @SerializedName("semester")
+        @Expose
+        private String semester;
+        @SerializedName("fakultas")
         @Expose
         private String fakultas;
-        @SerializedName("Prodi")
+        @SerializedName("prodi")
         @Expose
         private String prodi;
 
-        public String getnPM() {
-            return nPM;
+        public String getNim() {
+            return nim;
         }
 
-        public void setnPM(String nPM) {
-            this.nPM = nPM;
+        public void setNim(String nim) {
+            this.nim = nim;
         }
 
         public String getNama() {
@@ -72,20 +63,12 @@ public class ResponseLogin extends ResponseDefault {
             this.nama = nama;
         }
 
-        public String getTempatLahir() {
-            return tempatLahir;
+        public String getEmail() {
+            return email;
         }
 
-        public void setTempatLahir(String tempatLahir) {
-            this.tempatLahir = tempatLahir;
-        }
-
-        public String getTglLahir() {
-            return tglLahir;
-        }
-
-        public void setTglLahir(String tglLahir) {
-            this.tglLahir = tglLahir;
+        public void setEmail(String email) {
+            this.email = email;
         }
 
         public String getJenisKelamin() {
@@ -96,28 +79,12 @@ public class ResponseLogin extends ResponseDefault {
             this.jenisKelamin = jenisKelamin;
         }
 
-        public String getAlamat() {
-            return alamat;
+        public String getSemester() {
+            return semester;
         }
 
-        public void setAlamat(String alamat) {
-            this.alamat = alamat;
-        }
-
-        public String getEmail() {
-            return email;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
-        }
-
-        public String getTahunAkademik() {
-            return tahunAkademik;
-        }
-
-        public void setTahunAkademik(String tahunAkademik) {
-            this.tahunAkademik = tahunAkademik;
+        public void setSemester(String semester) {
+            this.semester = semester;
         }
 
         public String getFakultas() {
@@ -136,5 +103,4 @@ public class ResponseLogin extends ResponseDefault {
             this.prodi = prodi;
         }
     }
-
 }

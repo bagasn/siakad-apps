@@ -8,14 +8,14 @@ public class Config {
 
     /* DATABASE DECLARATION */
     public static final String DATABASE_NAME = "lecturesapp_db_master_lectapp.db";
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 4;
 
     /* Backend Declaration */
     /* Real */
-    public static final String BASE_URL = "https://itandcrime.000webhostapp.com/lctrs/api/";
+//    public static final String BASE_URL = "https://itandcrime.000webhostapp.com/api/";
 
     /* Dummy */
-//    public static final String BASE_URL = "http://10.0.2.2:8080/b/itandcrime/lctrs/api/";
+    public static final String BASE_URL = "http://10.0.2.2:8080/b/demo_app/ta-api/";
 
     public static final String API_TOKEN = "3add0f3378dc0fba4bbf2fab59a312cc";
 

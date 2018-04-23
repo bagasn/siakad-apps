@@ -10,10 +10,10 @@ import java.io.Serializable;
  */
 
 public class ResponseDefault implements Serializable {
-    @SerializedName("Code")
+    @SerializedName("code")
     @Expose
     private String code;
-    @SerializedName("Message")
+    @SerializedName("message")
     @Expose
     private String message;
 

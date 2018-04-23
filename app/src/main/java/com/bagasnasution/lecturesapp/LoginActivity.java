@@ -86,7 +86,6 @@ public class LoginActivity extends AppActivity implements View.OnClickListener {
     }
 
     private void doLogin() {
-//        pDialog.show();
         setDisable();
         String username = edtx_username.getText().toString();
         String password = toMD5(edtx_password.getText().toString());
@@ -100,9 +99,9 @@ public class LoginActivity extends AppActivity implements View.OnClickListener {
                     onLoginSuccess(response);
                 } else {
                     AppHelper.showToast(LoginActivity.this, response.body().getMessage());
+                    setEnable();
                 }
-//                pDialog.dismiss();
-                setEnable();
+
             }
 
             @Override
@@ -110,7 +109,6 @@ public class LoginActivity extends AppActivity implements View.OnClickListener {
                 Toast.makeText(getApplicationContext(), throwable.toString(), Toast.LENGTH_LONG).show();
                 Log.e("Failure", "--- Login Failure --->> ", throwable);
                 setEnable();
-//                pDialog.dismiss();
             }
         });
     }
@@ -119,15 +117,11 @@ public class LoginActivity extends AppActivity implements View.OnClickListener {
         DBUser.User user = new DBUser.User();
         ResponseLogin.Data data = response.body().getData();
         user.setNama(data.getNama());
-        user.setNpm(data.getnPM());
-        user.setAlamat(data.getAlamat());
+        user.setNpm(data.getNim());
         user.setEmail(data.getEmail());
         user.setFakultas(data.getFakultas());
         user.setProdi(data.getProdi());
         user.setJenisKelamin(data.getJenisKelamin());
-        user.setTempatLahir(data.getTempatLahir());
-        user.setTanggalLahir(data.getTglLahir());
-        user.setTahunAkademik(data.getTahunAkademik());
 
         if (DBUser.insertDataUser(this, user)) {
             new AppHelper().getInstance(this).setLoginInitiate(true);

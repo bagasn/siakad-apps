@@ -25,9 +25,9 @@ public interface Services {
     @Multipart
     @POST("login.php")
     Call<ResponseLogin> login(
-            @Part("Token") RequestBody token,
-            @Part("Username") RequestBody username,
-            @Part("Password") RequestBody password
+            @Part("token") RequestBody token,
+            @Part("username") RequestBody username,
+            @Part("password") RequestBody password
     );
 
     @GET("sks_list.php")

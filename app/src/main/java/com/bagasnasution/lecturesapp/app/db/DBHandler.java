@@ -74,14 +74,10 @@ public class DBHandler {
         if (cursor.moveToFirst()) {
             user.setNpm(cursor.getString(1));
             user.setNama(cursor.getString(2));
-            user.setTempatLahir(cursor.getString(3));
-            user.setTanggalLahir(cursor.getString(4));
-            user.setJenisKelamin(cursor.getString(5));
-            user.setAlamat(cursor.getString(6));
-            user.setEmail(cursor.getString(7));
-            user.setTahunAkademik(cursor.getString(8));
-            user.setFakultas(cursor.getString(9));
-            user.setProdi(cursor.getString(10));
+            user.setEmail(cursor.getString(3));
+            user.setJenisKelamin(cursor.getString(4));
+            user.setFakultas(cursor.getString(5));
+            user.setProdi(cursor.getString(6));
         }
 
         cursor.close();
