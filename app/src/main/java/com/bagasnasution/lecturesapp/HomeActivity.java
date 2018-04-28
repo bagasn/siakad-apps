@@ -15,10 +15,12 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bagasnasution.lecturesapp.app.db.DBHandler;
+import com.bagasnasution.lecturesapp.app.db.DBUser;
 import com.bagasnasution.lecturesapp.app.engine.AppActivity;
 import com.bagasnasution.lecturesapp.app.engine.AppFragment;
 import com.bagasnasution.lecturesapp.app.engine.AppHelper;
@@ -48,6 +50,8 @@ public class HomeActivity extends AppActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        setContentNavigationHeader(navigationView);
+
         TextView textVersionName = (TextView) findViewById(R.id.txvw_versionName);
         textVersionName.setText("Version " + BuildConfig.VERSION_NAME);
 
@@ -56,6 +60,27 @@ public class HomeActivity extends AppActivity
         fragmentTransaction.add(RESOURCE_FRAGMENT, new HomeFragment(), null);
 //        fragmentTransaction.add(RESOURCE_FRAGMENT, new HomeFragment(), getResources().getString(R.string.fragment_home));
         fragmentTransaction.commit();
+    }
+
+    private void setContentNavigationHeader(NavigationView rootView) {
+        View header = rootView.getHeaderView(0);
+
+        DBUser.User user = DBUser.getDataUser(this);
+
+        String fullname = user.getNama();
+        String[] names = fullname.split(" ");
+
+        if (names.length > 2) {
+            fullname = names[0] + " " + names[1];
+            for (int i = 2; i < names.length; i++) {
+                fullname += " " + names[i].toUpperCase().charAt(0);
+            }
+        }
+
+        ((TextView) header.findViewById(R.id.text_namaUser))
+                .setText(fullname);
+        ((TextView) header.findViewById(R.id.text_emailUser))
+                .setText(user.getEmail());
     }
 
     @Override
@@ -76,13 +101,6 @@ public class HomeActivity extends AppActivity
             });
             alert.show();
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.home, menu);
-        return true;
     }
 
     @Override
@@ -135,7 +153,7 @@ public class HomeActivity extends AppActivity
                 break;
             case R.id.nav_logout:
                 onLogout();
-                return false;
+                return true;
         }
 
         // Handle navigation view item clicks here.
@@ -149,46 +167,6 @@ public class HomeActivity extends AppActivity
 
         return false;
     }
-
-    private void onLogout() {
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setMessage("Are you sure want to logout from this app?");
-        alert.setNegativeButton("Cancel", null);
-        alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                deleteAllRow();
-            }
-        });
-        alert.show();
-    }
-
-    private void deleteAllRow() {
-        DBHandler handler = new DBHandler(this);
-        int delId = 0;
-        try {
-            delId = handler.deleteDataUser();
-        }
-        catch (SQLiteException e) {
-            Log.e("Logout", "---Logout Failed--->>> " + e.toString());
-            Toast.makeText(this, "Error when delete data user", Toast.LENGTH_LONG).show();
-        }
-        finally {
-            Log.e("Logout", "---Logout Success--->>> RowDelete: " + delId );
-            try {
-                AppHelper helper = new AppHelper().getInstance(this);
-                helper.removeLoginInitiate();
-            }
-            catch (Exception e) {
-                Log.e("SharedPreferences", "--Error-->> " + e.toString());
-            }
-            finally {
-                finish();
-            }
-        }
-    }
-
-
 
 
 }

@@ -90,7 +90,7 @@ public class LoginActivity extends AppActivity implements View.OnClickListener {
         String username = edtx_username.getText().toString();
         String password = toMD5(edtx_password.getText().toString());
 
-        Log.e("SendLOGIN", "Username: " + username + ", Password: " + password);
+        Log.i("SendLOGIN", "Username: " + username + ", Password: " + password);
 
         ConnectRetrofit.login(this, username, password, new ConnectRetrofit.OnResponse<ResponseLogin>() {
             @Override
