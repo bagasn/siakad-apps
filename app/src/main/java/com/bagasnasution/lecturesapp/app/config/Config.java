@@ -17,9 +17,9 @@ public class Config {
 
     /* Dummy */
 
-//  office
+//  port: 8080
 //    public static final String BASE_URL = "http://10.0.2.2:8080/b/demo_app/ta-api/";
-//  home
+//  port: 80
     public static final String BASE_URL = "http://10.0.2.2/b/demo_app/ta-api/";
 
 
