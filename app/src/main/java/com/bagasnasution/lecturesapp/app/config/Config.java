@@ -21,6 +21,8 @@ public class Config {
     public static final String BASE_URL = "http://10.0.2.2:8080/b/demo_app/ta-api/";
 //  home
 //    public static final String BASE_URL = "http://10.0.2.2:8080/b/demo_app/ta-api/";
+//  linux
+//    public static final String BASE_URL = "http://10.0.2.2/b/demota-api/";
 
 
     public static final String API_TOKEN = "3add0f3378dc0fba4bbf2fab59a312cc";
