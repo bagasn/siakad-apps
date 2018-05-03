@@ -7,6 +7,8 @@ import android.widget.Toast;
 
 import com.bagasnasution.lecturesapp.app.config.Config;
 import com.bagasnasution.lecturesapp.app.db.DBUser;
+import com.bagasnasution.lecturesapp.app.engine.AppHelper;
+import com.bagasnasution.lecturesapp.app.model.ResponseDefault;
 import com.bagasnasution.lecturesapp.app.model.ResponseLogin;
 import com.bagasnasution.lecturesapp.app.model.ResponseSks;
 
@@ -75,7 +77,11 @@ public class ConnectRetrofit {
         getConnection().login(token, rUsername, rPassword).enqueue(new Callback<ResponseLogin>() {
             @Override
             public void onResponse(Call<ResponseLogin> call, Response<ResponseLogin> response) {
-                listener.onResponse(call, response);
+                if (isResponse(response)) {
+                    listener.onResponse(call, response);
+                } else {
+                    AppHelper.showToast(context, "Connection Error [" + response.code() + "]");
+                }
             }
 
             @Override
@@ -101,6 +107,13 @@ public class ConnectRetrofit {
                         listener.onFailure(call, throwable);
                     }
                 });
+    }
+
+    private static boolean isResponse(Response<? extends ResponseDefault> response) {
+        if (response.isSuccessful()) {
+            return true;
+        }
+        return false;
     }
 
 
