@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -58,14 +59,19 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:paddingLeft="4dp"
+                        android:paddingRight="4dp">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="6dp"
                             android:text="Kelas Selanjutnya"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
-                            android:textColor="@color/colorAccent" />
+                            android:textAlignment="center"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+                            android:textColor="@color/colorPrimary"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -75,12 +81,136 @@
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
                             android:textColor="@color/colorAccent" />
 
+                        <LinearLayout
+                            android:id="@+id/view_contentJadwal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:text="Kalkulus 1"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                                android:textColor="@color/colorAccent"
+                                android:textSize="18sp" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/colorAccent" />
+
+                            <TableLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp">
+
+                                <TableRow>
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Waktu"
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                                        android:textSize="16sp" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="5dp"
+                                        android:layout_marginRight="5dp"
+                                        android:text=":"
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                                        android:textSize="16sp" />
+
+                                    <TextView
+                                        android:id="@+id/text_jadwal_waktu"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="18:30 - 20:30"
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                                        android:textSize="16sp" />
+
+                                </TableRow>
+
+                                <TableRow>
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Ruang Kelas"
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                                        android:textSize="16sp" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="5dp"
+                                        android:layout_marginRight="5dp"
+                                        android:text=":"
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                                        android:textSize="16sp" />
+
+                                    <TextView
+                                        android:id="@+id/text_jadwal_kelas"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="A.1.1"
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                                        android:textSize="16sp" />
+
+                                </TableRow>
+
+                                <TableRow>
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Dosen"
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                                        android:textSize="16sp" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="5dp"
+                                        android:layout_marginRight="5dp"
+                                        android:text=":"
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                                        android:textSize="16sp" />
+
+                                    <TextView
+                                        android:id="@+id/text_jadwal_dosen"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Unknown"
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                                        android:textSize="16sp" />
+
+                                </TableRow>
+
+                            </TableLayout>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>
 
             </LinearLayout>
+
+            <GridView
+                android:id="@+id/grid_subMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:horizontalSpacing="10dp"
+                android:numColumns="2"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="10dp"
+                tools:listitem="@layout/row_sub_menu"></GridView>
 
         </LinearLayout>
 

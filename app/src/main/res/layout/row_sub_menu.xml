@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/text_content"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_menu_home_black_24dp" />
+
+    <TextView
+        android:id="@+id/text_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="6dp"
+        android:text="Nama Sub Menu"
+        android:textAlignment="center"
+        android:textColor="@color/accent"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>
