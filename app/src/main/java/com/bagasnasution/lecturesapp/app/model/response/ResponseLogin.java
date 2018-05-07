@@ -1,10 +1,9 @@
-package com.bagasnasution.lecturesapp.app.model;
+package com.bagasnasution.lecturesapp.app.model.response;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Created by Batavianet on 10/12/2017.

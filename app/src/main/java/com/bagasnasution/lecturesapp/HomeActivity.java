@@ -1,11 +1,12 @@
 package com.bagasnasution.lecturesapp;
 
-import android.app.FragmentTransaction;
+
 import android.content.DialogInterface;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -56,7 +57,7 @@ public class HomeActivity extends AppActivity
         textVersionName.setText("Version " + BuildConfig.VERSION_NAME);
 
         // Fragment Initiate
-        fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(RESOURCE_FRAGMENT, new HomeFragment(), null);
 //        fragmentTransaction.add(RESOURCE_FRAGMENT, new HomeFragment(), getResources().getString(R.string.fragment_home));
         fragmentTransaction.commit();

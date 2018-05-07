@@ -8,9 +8,10 @@ import android.widget.Toast;
 import com.bagasnasution.lecturesapp.app.config.Config;
 import com.bagasnasution.lecturesapp.app.db.DBUser;
 import com.bagasnasution.lecturesapp.app.engine.AppHelper;
-import com.bagasnasution.lecturesapp.app.model.ResponseDefault;
-import com.bagasnasution.lecturesapp.app.model.ResponseLogin;
-import com.bagasnasution.lecturesapp.app.model.ResponseSks;
+import com.bagasnasution.lecturesapp.app.model.response.GetSlideHomeResponse;
+import com.bagasnasution.lecturesapp.app.model.response.ResponseDefault;
+import com.bagasnasution.lecturesapp.app.model.response.ResponseLogin;
+import com.bagasnasution.lecturesapp.app.model.response.ResponseSks;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -90,6 +91,22 @@ public class ConnectRetrofit {
             }
         });
 
+    }
+
+    public static void getSlideHome(Context context, final OnResponse<GetSlideHomeResponse> listener) {
+
+        getConnection().getslideHome(Config.API_TOKEN)
+                .enqueue(new Callback<GetSlideHomeResponse>() {
+                    @Override
+                    public void onResponse(Call<GetSlideHomeResponse> call, Response<GetSlideHomeResponse> response) {
+                        listener.onResponse(call, response);
+                    }
+
+                    @Override
+                    public void onFailure(Call<GetSlideHomeResponse> call, Throwable throwable) {
+                        listener.onFailure(call, throwable);
+                    }
+                });
     }
 
     public static synchronized void getSksList(Context context, final OnResponse<ResponseSks> listener) {

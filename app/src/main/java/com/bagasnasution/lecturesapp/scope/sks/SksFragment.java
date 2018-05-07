@@ -16,9 +16,7 @@ import com.bagasnasution.lecturesapp.R;
 import com.bagasnasution.lecturesapp.app.connect.ConnectRetrofit;
 import com.bagasnasution.lecturesapp.app.engine.AppFragment;
 import com.bagasnasution.lecturesapp.app.engine.AppHelper;
-import com.bagasnasution.lecturesapp.app.model.ResponseSks;
-
-import java.text.DecimalFormat;
+import com.bagasnasution.lecturesapp.app.model.response.ResponseSks;
 
 import retrofit2.Call;
 import retrofit2.Response;

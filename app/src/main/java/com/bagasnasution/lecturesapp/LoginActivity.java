@@ -5,7 +5,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.constraint.solver.Goal;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -21,7 +20,7 @@ import com.bagasnasution.lecturesapp.app.connect.ConnectRetrofit;
 import com.bagasnasution.lecturesapp.app.db.DBUser;
 import com.bagasnasution.lecturesapp.app.engine.AppActivity;
 import com.bagasnasution.lecturesapp.app.engine.AppHelper;
-import com.bagasnasution.lecturesapp.app.model.ResponseLogin;
+import com.bagasnasution.lecturesapp.app.model.response.ResponseLogin;
 
 import retrofit2.Call;
 import retrofit2.Response;

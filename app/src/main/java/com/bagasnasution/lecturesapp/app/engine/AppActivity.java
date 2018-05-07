@@ -1,14 +1,17 @@
 package com.bagasnasution.lecturesapp.app.engine;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
+//import android.app.Fragment;
+//import android.app.FragmentTransaction;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteException;
 import android.support.annotation.IdRes;
-import android.app.FragmentManager;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -32,7 +35,7 @@ public abstract class AppActivity extends AppCompatActivity {
     private static final String TAG = "AppActivity";
 
     protected void addFragment(@IdRes int resId, Fragment fragment, @Nullable @StringRes int tag) {
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(resId, new HomeFragment(), tag == 0 ? null : getString(tag));
         fragmentTransaction.commit();
     }
@@ -56,7 +59,7 @@ public abstract class AppActivity extends AppCompatActivity {
     protected void replaceFragmentTo(@IdRes int layoutRes, AppFragment fragment, @StringRes int nameTag,
                                      @StringRes int toBackStack, boolean animation) {
 
-        FragmentManager manager = getFragmentManager();
+        FragmentManager manager = getSupportFragmentManager();
 
         FragmentTransaction transaction = manager.beginTransaction();
 

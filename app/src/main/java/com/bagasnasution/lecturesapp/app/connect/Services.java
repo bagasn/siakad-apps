@@ -1,15 +1,11 @@
 package com.bagasnasution.lecturesapp.app.connect;
 
-import com.bagasnasution.lecturesapp.app.model.ResponseLogin;
-import com.bagasnasution.lecturesapp.app.model.ResponseSks;
-
-import java.util.HashMap;
+import com.bagasnasution.lecturesapp.app.model.response.GetSlideHomeResponse;
+import com.bagasnasution.lecturesapp.app.model.response.ResponseLogin;
+import com.bagasnasution.lecturesapp.app.model.response.ResponseSks;
 
 import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Multipart;
@@ -32,7 +28,13 @@ public interface Services {
 
     @GET("sks_list.php")
     Call<ResponseSks> getListSks(
-        @Query("Token") String token,
-        @Query("Username") String username
+            @Query("token") String token,
+            @Query("username") String username
     );
+
+    @GET("get_slide_list.php")
+    Call<GetSlideHomeResponse> getslideHome(
+            @Query("token") String token
+    );
+
 }

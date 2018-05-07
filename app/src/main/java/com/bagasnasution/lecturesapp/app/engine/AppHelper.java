@@ -59,4 +59,22 @@ public class AppHelper {
         return p;
     }
 
+    public static String getSimpleName(String fullname) {
+        String[] names = fullname.split(" ");
+
+        if (names.length > 2) {
+            fullname = names[0] + " " + names[1];
+            for (int i = 2; i < names.length; i++) {
+                fullname += " " + names[i].toUpperCase().charAt(0);
+            }
+        }
+        return fullname;
+    }
+
+    public static String getFirstName(String fullname) {
+        String[] nyet = fullname.split(" ");
+
+        return nyet[0];
+    }
+
 }

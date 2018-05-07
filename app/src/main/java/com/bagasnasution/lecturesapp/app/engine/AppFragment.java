@@ -1,4 +1,6 @@
 package com.bagasnasution.lecturesapp.app.engine;
 
-public abstract class AppFragment extends android.app.Fragment {
+import android.support.v4.app.Fragment;
+
+public abstract class AppFragment extends Fragment {
 }

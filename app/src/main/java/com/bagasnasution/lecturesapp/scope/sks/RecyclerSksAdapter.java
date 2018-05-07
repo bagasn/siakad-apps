@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bagasnasution.lecturesapp.R;
-import com.bagasnasution.lecturesapp.app.model.ResponseSks;
+import com.bagasnasution.lecturesapp.app.model.response.ResponseSks;
 
 import java.util.List;
 
