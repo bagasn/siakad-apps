@@ -10,8 +10,8 @@ import java.util.List;
  * Created by bagas on 1/24/2018.
  */
 
-public class ResponseSks extends ResponseDefault {
-    @SerializedName("Data")
+public class ResponseNilai extends ResponseDefault {
+    @SerializedName("data")
     @Expose
     private List<DataSks> data;
 
@@ -24,10 +24,10 @@ public class ResponseSks extends ResponseDefault {
     }
 
     public class DataSks implements Serializable {
-        @SerializedName("KodeMatkul")
+        @SerializedName("kode-matkul")
         @Expose
         private String kodeMatkul;
-        @SerializedName("NamaMatkul")
+        @SerializedName("nama-makul")
         @Expose
         private String namaMatkul;
         @SerializedName("sks")
@@ -36,16 +36,16 @@ public class ResponseSks extends ResponseDefault {
         @SerializedName("nilai")
         @Expose
         private String nilai;
-        @SerializedName("nilaiAkdm")
+        @SerializedName("nilai-akdm")
         @Expose
         private String nilaiAkdm;
-        @SerializedName("Semester")
+        @SerializedName("semester")
         @Expose
         private String semester;
-        @SerializedName("StatusLulus")
+        @SerializedName("status")
         @Expose
         private String statusLulus;
-        @SerializedName("Mengulan")
+        @SerializedName("mengulang")
         @Expose
         private String mengulan;
 

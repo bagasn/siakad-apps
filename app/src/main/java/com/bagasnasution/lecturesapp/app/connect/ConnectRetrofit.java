@@ -11,7 +11,7 @@ import com.bagasnasution.lecturesapp.app.engine.AppHelper;
 import com.bagasnasution.lecturesapp.app.model.response.GetSlideHomeResponse;
 import com.bagasnasution.lecturesapp.app.model.response.ResponseDefault;
 import com.bagasnasution.lecturesapp.app.model.response.ResponseLogin;
-import com.bagasnasution.lecturesapp.app.model.response.ResponseSks;
+import com.bagasnasution.lecturesapp.app.model.response.ResponseNilai;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -109,18 +109,18 @@ public class ConnectRetrofit {
                 });
     }
 
-    public static synchronized void getSksList(Context context, final OnResponse<ResponseSks> listener) {
+    public static synchronized void getSksList(Context context, final OnResponse<ResponseNilai> listener) {
         String username = DBUser.getDataUser(context).getNpm();
 
         getConnection().getListSks(TOKEN, username)
-                .enqueue(new Callback<ResponseSks>() {
+                .enqueue(new Callback<ResponseNilai>() {
                     @Override
-                    public void onResponse(Call<ResponseSks> call, Response<ResponseSks> response) {
+                    public void onResponse(Call<ResponseNilai> call, Response<ResponseNilai> response) {
                         listener.onResponse(call, response);
                     }
 
                     @Override
-                    public void onFailure(Call<ResponseSks> call, Throwable throwable) {
+                    public void onFailure(Call<ResponseNilai> call, Throwable throwable) {
                         listener.onFailure(call, throwable);
                     }
                 });

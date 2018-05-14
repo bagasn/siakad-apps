@@ -2,7 +2,6 @@ package com.bagasnasution.lecturesapp;
 
 
 import android.content.DialogInterface;
-import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -13,20 +12,16 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bagasnasution.lecturesapp.app.db.DBHandler;
 import com.bagasnasution.lecturesapp.app.db.DBUser;
 import com.bagasnasution.lecturesapp.app.engine.AppActivity;
 import com.bagasnasution.lecturesapp.app.engine.AppFragment;
-import com.bagasnasution.lecturesapp.app.engine.AppHelper;
 import com.bagasnasution.lecturesapp.scope.jadwal.ListJadwalFragment;
-import com.bagasnasution.lecturesapp.scope.sks.SksFragment;
+import com.bagasnasution.lecturesapp.scope.nilai.NilaiFragment;
 
 public class HomeActivity extends AppActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -147,7 +142,7 @@ public class HomeActivity extends AppActivity
                 fragment = new ListJadwalFragment();
                 break;
             case R.id.nav_nilai:
-                fragment = new SksFragment();
+                fragment = new NilaiFragment();
                 break;
             case R.id.nav_krs:
                 Toast.makeText(this, "Bayaran", Toast.LENGTH_SHORT).show();
