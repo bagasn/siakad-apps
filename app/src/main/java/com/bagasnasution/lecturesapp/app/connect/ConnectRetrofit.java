@@ -10,6 +10,7 @@ import com.bagasnasution.lecturesapp.app.db.DBUser;
 import com.bagasnasution.lecturesapp.app.engine.AppHelper;
 import com.bagasnasution.lecturesapp.app.model.response.GetSlideHomeResponse;
 import com.bagasnasution.lecturesapp.app.model.response.ResponseDefault;
+import com.bagasnasution.lecturesapp.app.model.response.ResponseJadwal;
 import com.bagasnasution.lecturesapp.app.model.response.ResponseLogin;
 import com.bagasnasution.lecturesapp.app.model.response.ResponseNilai;
 
@@ -124,6 +125,24 @@ public class ConnectRetrofit {
                         listener.onFailure(call, throwable);
                     }
                 });
+    }
+
+    public static synchronized void getJadwal(Context context, final OnResponse<ResponseJadwal> listener) {
+        String username = DBUser.getDataUser(context).getNpm();
+
+        getConnection().getJadwal(TOKEN)
+                .enqueue(new Callback<ResponseJadwal>() {
+                             @Override
+                             public void onResponse(Call<ResponseJadwal> call, Response<ResponseJadwal> response) {
+                                 listener.onResponse(call, response);
+                             }
+
+                             @Override
+                             public void onFailure(Call<ResponseJadwal> call, Throwable throwable) {
+                                 listener.onFailure(call, throwable);
+                             }
+                         }
+                );
     }
 
     private static boolean isResponse(Response<? extends ResponseDefault> response) {

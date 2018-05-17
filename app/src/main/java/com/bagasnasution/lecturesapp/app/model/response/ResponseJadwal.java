@@ -16,6 +16,8 @@ public class ResponseJadwal extends ResponseDefault {
 
 
     private class JadwalModel {
-
+        @SerializedName("kode")
+        @Expose
+        private String kode;
     }
 }
