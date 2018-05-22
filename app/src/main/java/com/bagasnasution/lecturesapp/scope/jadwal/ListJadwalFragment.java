@@ -13,7 +13,10 @@ import com.bagasnasution.lecturesapp.R;
 import com.bagasnasution.lecturesapp.app.config.Config;
 import com.bagasnasution.lecturesapp.app.connect.ConnectRetrofit;
 import com.bagasnasution.lecturesapp.app.engine.AppFragment;
+import com.bagasnasution.lecturesapp.app.engine.AppHelper;
 import com.bagasnasution.lecturesapp.app.model.response.ResponseJadwal;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -53,8 +56,8 @@ public class ListJadwalFragment extends AppFragment {
             @Override
             public void onResponse(Call<ResponseJadwal> call, Response<ResponseJadwal> response) {
                 if (response.isSuccessful()) {
-                    if (response.body().getCode() == Config.API_CODE_SUCCESS) {
-
+                    if (response.body().getCode().equals(Config.API_CODE_SUCCESS)) {
+                        setDataToShow(response.body().getDatum());
                     }
                 }
 
@@ -72,6 +75,20 @@ public class ListJadwalFragment extends AppFragment {
                 }
             }
         });
+    }
+
+    private void setDataToShow(List<ResponseJadwal.ListJadwal> listData) {
+        if (listData != null) {
+            if (listData.size() > 0) {
+
+                JadwalAdapter adapter = new JadwalAdapter(getContext(), listData);
+
+                list_content.setAdapter(adapter);
+                return;
+            }
+        }
+
+        AppHelper.showToast(getContext(), "Tidak ada data!");
     }
 
 }

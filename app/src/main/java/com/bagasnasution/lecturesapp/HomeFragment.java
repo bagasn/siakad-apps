@@ -97,10 +97,10 @@ public class HomeFragment extends AppFragment {
 
             pager_slideImage.setAdapter(adapter_pagerHome);
             pager_indicator.setViewPager(pager_slideImage);
-
-            if (!mThreadPager.isAlive()) {
-                mThreadPager.start();
-            }
+//
+//            if (!mThreadPager.isAlive()) {
+//                mThreadPager.start();
+//            }
         }
     }
 
