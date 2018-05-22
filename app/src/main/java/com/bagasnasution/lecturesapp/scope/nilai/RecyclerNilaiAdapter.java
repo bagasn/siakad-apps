@@ -1,4 +1,4 @@
-package com.bagasnasution.lecturesapp.scope.sks;
+package com.bagasnasution.lecturesapp.scope.nilai;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bagasnasution.lecturesapp.R;
-import com.bagasnasution.lecturesapp.app.model.response.ResponseSks;
+import com.bagasnasution.lecturesapp.app.model.response.ResponseNilai;
 
 import java.util.List;
 
@@ -17,14 +17,14 @@ import java.util.List;
  * Created by bagas on 1/24/2018.
  */
 
-public class RecyclerSksAdapter extends RecyclerView.Adapter<RecyclerSksAdapter.SksHolder> {
+public class RecyclerNilaiAdapter extends RecyclerView.Adapter<RecyclerNilaiAdapter.SksHolder> {
     private Context context;
-    private List<ResponseSks.DataSks> data_sks;
+    private List<ResponseNilai.DataSks> data_sks;
     private OnSksClickListener listener = null;
 
     private static final int RESOURCE_LAYOUT = R.layout.row_sks_item;
 
-    public RecyclerSksAdapter(Context context, List<ResponseSks.DataSks> objects) {
+    public RecyclerNilaiAdapter(Context context, List<ResponseNilai.DataSks> objects) {
         this.context = context;
         this.data_sks = objects;
     }
@@ -38,7 +38,7 @@ public class RecyclerSksAdapter extends RecyclerView.Adapter<RecyclerSksAdapter.
     @Override
     public void onBindViewHolder(SksHolder sksHolder, int i) {
 
-        final ResponseSks.DataSks data = data_sks.get(i);
+        final ResponseNilai.DataSks data = data_sks.get(i);
 
         try {
             sksHolder.txvw_title.setText(data.getNamaMatkul());
@@ -89,7 +89,7 @@ public class RecyclerSksAdapter extends RecyclerView.Adapter<RecyclerSksAdapter.
     }
 
     public interface OnSksClickListener {
-        void onSksClicked(View v, ResponseSks.DataSks data);
+        void onSksClicked(View v, ResponseNilai.DataSks data);
     }
 
 }

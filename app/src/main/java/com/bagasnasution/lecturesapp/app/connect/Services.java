@@ -1,8 +1,6 @@
 package com.bagasnasution.lecturesapp.app.connect;
 
-import com.bagasnasution.lecturesapp.app.model.response.GetSlideHomeResponse;
-import com.bagasnasution.lecturesapp.app.model.response.ResponseLogin;
-import com.bagasnasution.lecturesapp.app.model.response.ResponseSks;
+import com.bagasnasution.lecturesapp.app.model.response.*;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -26,14 +24,19 @@ public interface Services {
             @Part("password") RequestBody password
     );
 
-    @GET("sks_list.php")
-    Call<ResponseSks> getListSks(
+    @GET("get_slide_list.php")
+    Call<GetSlideHomeResponse> getslideHome(
+            @Query("token") String token
+    );
+
+    @GET("get_nilai.php")
+    Call<ResponseNilai> getListSks(
             @Query("token") String token,
             @Query("username") String username
     );
 
-    @GET("get_slide_list.php")
-    Call<GetSlideHomeResponse> getslideHome(
+    @GET("get_jadwal.php")
+    Call<ResponseJadwal> getJadwal(
             @Query("token") String token
     );
 

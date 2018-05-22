@@ -1,4 +1,4 @@
-package com.bagasnasution.lecturesapp.scope.sks;
+package com.bagasnasution.lecturesapp.scope.nilai;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,7 +16,7 @@ import com.bagasnasution.lecturesapp.R;
 import com.bagasnasution.lecturesapp.app.connect.ConnectRetrofit;
 import com.bagasnasution.lecturesapp.app.engine.AppFragment;
 import com.bagasnasution.lecturesapp.app.engine.AppHelper;
-import com.bagasnasution.lecturesapp.app.model.response.ResponseSks;
+import com.bagasnasution.lecturesapp.app.model.response.ResponseNilai;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -25,10 +25,10 @@ import retrofit2.Response;
  * Created by Bagas on 07/10/2017.
  */
 
-public class SksFragment extends AppFragment implements RecyclerSksAdapter.OnSksClickListener {
+public class NilaiFragment extends AppFragment implements RecyclerNilaiAdapter.OnSksClickListener {
 
     private RecyclerView rclr_sks;
-    private RecyclerSksAdapter adapter_sks;
+    private RecyclerNilaiAdapter adapter_sks;
     private View view_loading;
     private TextView txvw_errorMessage;
     private TextView txvw_totalSks;
@@ -53,14 +53,14 @@ public class SksFragment extends AppFragment implements RecyclerSksAdapter.OnSks
         return view;
     }
 
-    private void setContent(ResponseSks data) {
+    private void setContent(ResponseNilai data) {
         int totalSks = 0;
         int iEvaluasi = 0;
         int countMk = data.getData().size();
 
         for (int i = 0; i < countMk; i++) {
             try {
-                ResponseSks.DataSks item = data.getData().get(i);
+                ResponseNilai.DataSks item = data.getData().get(i);
 
                 String temp_akdm = item.getNilaiAkdm();
 
@@ -104,13 +104,13 @@ public class SksFragment extends AppFragment implements RecyclerSksAdapter.OnSks
 
     private void getDataSks() {
         startLoading();
-        ConnectRetrofit.getSksList(getActivity().getApplicationContext(), new ConnectRetrofit.OnResponse<ResponseSks>() {
+        ConnectRetrofit.getSksList(getActivity().getApplicationContext(), new ConnectRetrofit.OnResponse<ResponseNilai>() {
             @Override
-            public void onResponse(Call<ResponseSks> call, Response<ResponseSks> response) {
+            public void onResponse(Call<ResponseNilai> call, Response<ResponseNilai> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
-                        adapter_sks = new RecyclerSksAdapter(getActivity().getApplicationContext(), response.body().getData());
-                        adapter_sks.setOnSksClickListener(SksFragment.this);
+                        adapter_sks = new RecyclerNilaiAdapter(getActivity().getApplicationContext(), response.body().getData());
+                        adapter_sks.setOnSksClickListener(NilaiFragment.this);
                         rclr_sks.setAdapter(adapter_sks);
 
                         if (!response.body().getCode().equals("0000")) {
@@ -137,7 +137,7 @@ public class SksFragment extends AppFragment implements RecyclerSksAdapter.OnSks
             }
 
             @Override
-            public void onFailure(Call<ResponseSks> call, Throwable throwable) {
+            public void onFailure(Call<ResponseNilai> call, Throwable throwable) {
                 AppHelper.showToast(getActivity().getApplication(), throwable.toString());
                 Log.e(getTag(), throwable.toString(), throwable);
                 endLoadingWithError();
@@ -164,7 +164,7 @@ public class SksFragment extends AppFragment implements RecyclerSksAdapter.OnSks
     }
 
     @Override
-    public void onSksClicked(View v, ResponseSks.DataSks data) {
+    public void onSksClicked(View v, ResponseNilai.DataSks data) {
 
     }
 }

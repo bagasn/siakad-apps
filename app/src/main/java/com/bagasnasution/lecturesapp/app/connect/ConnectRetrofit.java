@@ -10,8 +10,9 @@ import com.bagasnasution.lecturesapp.app.db.DBUser;
 import com.bagasnasution.lecturesapp.app.engine.AppHelper;
 import com.bagasnasution.lecturesapp.app.model.response.GetSlideHomeResponse;
 import com.bagasnasution.lecturesapp.app.model.response.ResponseDefault;
+import com.bagasnasution.lecturesapp.app.model.response.ResponseJadwal;
 import com.bagasnasution.lecturesapp.app.model.response.ResponseLogin;
-import com.bagasnasution.lecturesapp.app.model.response.ResponseSks;
+import com.bagasnasution.lecturesapp.app.model.response.ResponseNilai;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -109,21 +110,39 @@ public class ConnectRetrofit {
                 });
     }
 
-    public static synchronized void getSksList(Context context, final OnResponse<ResponseSks> listener) {
+    public static synchronized void getSksList(Context context, final OnResponse<ResponseNilai> listener) {
         String username = DBUser.getDataUser(context).getNpm();
 
         getConnection().getListSks(TOKEN, username)
-                .enqueue(new Callback<ResponseSks>() {
+                .enqueue(new Callback<ResponseNilai>() {
                     @Override
-                    public void onResponse(Call<ResponseSks> call, Response<ResponseSks> response) {
+                    public void onResponse(Call<ResponseNilai> call, Response<ResponseNilai> response) {
                         listener.onResponse(call, response);
                     }
 
                     @Override
-                    public void onFailure(Call<ResponseSks> call, Throwable throwable) {
+                    public void onFailure(Call<ResponseNilai> call, Throwable throwable) {
                         listener.onFailure(call, throwable);
                     }
                 });
+    }
+
+    public static synchronized void getJadwal(Context context, final OnResponse<ResponseJadwal> listener) {
+        String username = DBUser.getDataUser(context).getNpm();
+
+        getConnection().getJadwal(TOKEN)
+                .enqueue(new Callback<ResponseJadwal>() {
+                             @Override
+                             public void onResponse(Call<ResponseJadwal> call, Response<ResponseJadwal> response) {
+                                 listener.onResponse(call, response);
+                             }
+
+                             @Override
+                             public void onFailure(Call<ResponseJadwal> call, Throwable throwable) {
+                                 listener.onFailure(call, throwable);
+                             }
+                         }
+                );
     }
 
     private static boolean isResponse(Response<? extends ResponseDefault> response) {
