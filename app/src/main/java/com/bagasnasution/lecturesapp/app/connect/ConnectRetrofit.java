@@ -9,9 +9,11 @@ import com.bagasnasution.lecturesapp.app.config.Config;
 import com.bagasnasution.lecturesapp.app.db.DBUser;
 import com.bagasnasution.lecturesapp.app.engine.AppHelper;
 import com.bagasnasution.lecturesapp.app.model.response.GetSlideHomeResponse;
+import com.bagasnasution.lecturesapp.app.model.response.ResponseCurrentJadwal;
 import com.bagasnasution.lecturesapp.app.model.response.ResponseDefault;
 import com.bagasnasution.lecturesapp.app.model.response.ResponseJadwal;
 import com.bagasnasution.lecturesapp.app.model.response.ResponseLogin;
+import com.bagasnasution.lecturesapp.app.model.response.ResponseMatkul;
 import com.bagasnasution.lecturesapp.app.model.response.ResponseNilai;
 
 import okhttp3.MediaType;
@@ -143,6 +145,38 @@ public class ConnectRetrofit {
                              }
                          }
                 );
+    }
+
+    public static synchronized void getCurrentJadwal(Context context, final OnResponse<ResponseCurrentJadwal> listener) {
+        String username = DBUser.getDataUser(context).getNpm();
+
+        getConnection().getCurrentJadwal(TOKEN).enqueue(new Callback<ResponseCurrentJadwal>() {
+            @Override
+            public void onResponse(Call<ResponseCurrentJadwal> call, Response<ResponseCurrentJadwal> response) {
+                listener.onResponse(call, response);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseCurrentJadwal> call, Throwable throwable) {
+                listener.onFailure(call, throwable);
+            }
+        });
+    }
+
+    public static synchronized void getMatakuliah(Context context, final OnResponse<ResponseMatkul> listener) {
+
+        getConnection().getMatakuliah(TOKEN)
+                .enqueue(new Callback<ResponseMatkul>() {
+                    @Override
+                    public void onResponse(Call<ResponseMatkul> call, Response<ResponseMatkul> response) {
+                        listener.onResponse(call, response);
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseMatkul> call, Throwable throwable) {
+                        listener.onFailure(call, throwable);
+                    }
+                });
     }
 
     private static boolean isResponse(Response<? extends ResponseDefault> response) {

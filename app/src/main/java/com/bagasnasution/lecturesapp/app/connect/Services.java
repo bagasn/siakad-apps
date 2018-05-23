@@ -40,4 +40,14 @@ public interface Services {
             @Query("token") String token
     );
 
+    @GET("get_jadwal_hari_ini.php")
+    Call<ResponseCurrentJadwal> getCurrentJadwal(
+            @Query("token") String token
+    );
+
+    @GET("get_matkul.php")
+    Call<ResponseMatkul> getMatakuliah(
+            @Query("token") String token
+    );
+
 }

@@ -99,111 +99,27 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
+                            <ProgressBar
+                                android:id="@+id/prg_loading_jadwal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="16dp"
+                                android:layout_marginTop="16dp"
+                                android:padding="8dp"
+                                android:visibility="visible" />
+
                             <TextView
+                                android:id="@+id/text_no_data_jadwal"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:ellipsize="end"
-                                android:maxLines="1"
-                                android:text="Kalkulus 1"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                                android:textColor="@color/colorAccent"
-                                android:textSize="18sp" />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:background="@color/colorAccent" />
-
-                            <TableLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="6dp">
-
-                                <TableRow>
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:text="Waktu"
-                                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                                        android:textSize="16sp" />
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="5dp"
-                                        android:layout_marginRight="5dp"
-                                        android:text=":"
-                                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                                        android:textSize="16sp" />
-
-                                    <TextView
-                                        android:id="@+id/text_jadwal_waktu"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:text="18:30 - 20:30"
-                                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                                        android:textSize="16sp" />
-
-                                </TableRow>
-
-                                <TableRow>
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:text="Ruang Kelas"
-                                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                                        android:textSize="16sp" />
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="5dp"
-                                        android:layout_marginRight="5dp"
-                                        android:text=":"
-                                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                                        android:textSize="16sp" />
-
-                                    <TextView
-                                        android:id="@+id/text_jadwal_kelas"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:text="A.1.1"
-                                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                                        android:textSize="16sp" />
-
-                                </TableRow>
-
-                                <TableRow>
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:text="Dosen"
-                                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                                        android:textSize="16sp" />
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="5dp"
-                                        android:layout_marginRight="5dp"
-                                        android:text=":"
-                                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                                        android:textSize="16sp" />
-
-                                    <TextView
-                                        android:id="@+id/text_jadwal_dosen"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:text="Unknown"
-                                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                                        android:textSize="16sp" />
-
-                                </TableRow>
-
-                            </TableLayout>
+                                android:layout_marginBottom="16dp"
+                                android:layout_marginTop="16dp"
+                                android:padding="8dp"
+                                android:text="Tidak ada jadwal hari ini"
+                                android:textAlignment="center"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                                android:textColor="@color/secondary_text"
+                                android:visibility="gone" />
 
                         </LinearLayout>
 
