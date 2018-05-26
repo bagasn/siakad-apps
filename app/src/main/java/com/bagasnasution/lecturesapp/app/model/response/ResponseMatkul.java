@@ -23,7 +23,7 @@ public class ResponseMatkul extends ResponseDefault {
     }
 
     public class MatKul {
-        @SerializedName("data")
+        @SerializedName("kode")
         @Expose
         private String kode;
         @SerializedName("nama")

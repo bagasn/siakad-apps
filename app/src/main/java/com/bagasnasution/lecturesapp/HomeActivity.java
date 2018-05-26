@@ -21,6 +21,7 @@ import com.bagasnasution.lecturesapp.app.db.DBUser;
 import com.bagasnasution.lecturesapp.app.engine.AppActivity;
 import com.bagasnasution.lecturesapp.app.engine.AppFragment;
 import com.bagasnasution.lecturesapp.scope.jadwal.ListJadwalFragment;
+import com.bagasnasution.lecturesapp.scope.matkul.MatkulMainFragment;
 import com.bagasnasution.lecturesapp.scope.nilai.NilaiFragment;
 
 public class HomeActivity extends AppActivity
@@ -136,7 +137,7 @@ public class HomeActivity extends AppActivity
                 fragment = new HomeFragment();
                 break;
             case R.id.nav_matkul:
-                Toast.makeText(this, "matkul", Toast.LENGTH_SHORT).show();
+                fragment = new MatkulMainFragment();
                 break;
             case R.id.nav_jadwal:
                 fragment = new ListJadwalFragment();
@@ -145,7 +146,7 @@ public class HomeActivity extends AppActivity
                 fragment = new NilaiFragment();
                 break;
             case R.id.nav_krs:
-                Toast.makeText(this, "Bayaran", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "not available now!", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_logout:
                 onLogout();
