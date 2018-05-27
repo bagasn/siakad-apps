@@ -12,6 +12,7 @@ import com.bagasnasution.lecturesapp.app.model.response.GetSlideHomeResponse;
 import com.bagasnasution.lecturesapp.app.model.response.ResponseCurrentJadwal;
 import com.bagasnasution.lecturesapp.app.model.response.ResponseDefault;
 import com.bagasnasution.lecturesapp.app.model.response.ResponseJadwal;
+import com.bagasnasution.lecturesapp.app.model.response.ResponseListSKS;
 import com.bagasnasution.lecturesapp.app.model.response.ResponseLogin;
 import com.bagasnasution.lecturesapp.app.model.response.ResponseMatkul;
 import com.bagasnasution.lecturesapp.app.model.response.ResponseNilai;
@@ -112,10 +113,10 @@ public class ConnectRetrofit {
                 });
     }
 
-    public static synchronized void getSksList(Context context, final OnResponse<ResponseNilai> listener) {
+    public static synchronized void getNilai(Context context, final OnResponse<ResponseNilai> listener) {
         String username = DBUser.getDataUser(context).getNpm();
 
-        getConnection().getListSks(TOKEN, username)
+        getConnection().getNilai(TOKEN, username)
                 .enqueue(new Callback<ResponseNilai>() {
                     @Override
                     public void onResponse(Call<ResponseNilai> call, Response<ResponseNilai> response) {
@@ -174,6 +175,22 @@ public class ConnectRetrofit {
 
                     @Override
                     public void onFailure(Call<ResponseMatkul> call, Throwable throwable) {
+                        listener.onFailure(call, throwable);
+                    }
+                });
+    }
+
+    public static synchronized void getListSks(Context context, final OnResponse<ResponseListSKS> listener) {
+
+        getConnection().getListSks(TOKEN)
+                .enqueue(new Callback<ResponseListSKS>() {
+                    @Override
+                    public void onResponse(Call<ResponseListSKS> call, Response<ResponseListSKS> response) {
+                        listener.onResponse(call, response);
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseListSKS> call, Throwable throwable) {
                         listener.onFailure(call, throwable);
                     }
                 });

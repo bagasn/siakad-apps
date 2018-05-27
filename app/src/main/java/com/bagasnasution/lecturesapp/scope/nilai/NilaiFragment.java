@@ -104,7 +104,7 @@ public class NilaiFragment extends AppFragment implements RecyclerNilaiAdapter.O
 
     private void getDataSks() {
         startLoading();
-        ConnectRetrofit.getSksList(getActivity().getApplicationContext(), new ConnectRetrofit.OnResponse<ResponseNilai>() {
+        ConnectRetrofit.getNilai(getActivity().getApplicationContext(), new ConnectRetrofit.OnResponse<ResponseNilai>() {
             @Override
             public void onResponse(Call<ResponseNilai> call, Response<ResponseNilai> response) {
                 if (response.isSuccessful()) {

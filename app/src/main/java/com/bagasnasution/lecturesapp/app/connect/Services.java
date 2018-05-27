@@ -30,7 +30,7 @@ public interface Services {
     );
 
     @GET("get_nilai.php")
-    Call<ResponseNilai> getListSks(
+    Call<ResponseNilai> getNilai(
             @Query("token") String token,
             @Query("username") String username
     );
@@ -47,6 +47,11 @@ public interface Services {
 
     @GET("get_matkul.php")
     Call<ResponseMatkul> getMatakuliah(
+            @Query("token") String token
+    );
+
+    @GET("get_list_sks.php")
+    Call<ResponseListSKS> getListSks(
             @Query("token") String token
     );
 
