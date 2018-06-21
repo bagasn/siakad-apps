@@ -38,6 +38,7 @@ android {
         applicationId "com.bagasnasution.lecturesapp"
         minSdkVersion 21
         targetSdkVersion 24
+        versionCode verCode
         versionName verName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
