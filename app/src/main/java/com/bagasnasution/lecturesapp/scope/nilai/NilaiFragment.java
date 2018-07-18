@@ -68,9 +68,9 @@ public class NilaiFragment extends AppFragment implements RecyclerNilaiAdapter.O
 
                 iEvaluasi += value_akdm;
 
-                int temp_sks = Integer.parseInt(item.getSks());
+                int temp_sks = item.getSks();
 
-                if (item.getStatusLulus().equals("1")) {
+                if (item.getStatusLulus().equals(1)) {
                     totalSks += temp_sks;
                 }
 

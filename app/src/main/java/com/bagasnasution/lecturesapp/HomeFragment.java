@@ -1,12 +1,14 @@
 package com.bagasnasution.lecturesapp;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -16,8 +18,11 @@ import com.bagasnasution.lecturesapp.app.connect.ConnectRetrofit;
 import com.bagasnasution.lecturesapp.app.db.DBUser;
 import com.bagasnasution.lecturesapp.app.engine.AppFragment;
 import com.bagasnasution.lecturesapp.app.engine.AppHelper;
+import com.bagasnasution.lecturesapp.app.model.SubMenuModel;
 import com.bagasnasution.lecturesapp.app.model.response.GetSlideHomeResponse;
 import com.bagasnasution.lecturesapp.app.model.response.ResponseCurrentJadwal;
+import com.bagasnasution.lecturesapp.app.view.ExpandableHeightGridView;
+import com.bagasnasution.lecturesapp.scope.adapter.GridSubMenuAdapter;
 import com.bagasnasution.lecturesapp.scope.adapter.PagerHomeAdapter;
 
 import me.relex.circleindicator.CircleIndicator;
@@ -28,7 +33,7 @@ import retrofit2.Response;
  * Created by Bagas on 23/08/2017.
  */
 
-public class HomeFragment extends AppFragment {
+public class HomeFragment extends AppFragment implements AdapterView.OnItemClickListener {
     private static final String TAG = "HomeFragment";
 
     private TextView text_hello;
@@ -39,16 +44,21 @@ public class HomeFragment extends AppFragment {
 
     private DBUser.User mDataUser = null;
 
-//    @Override
-//    public void onCreate(@Nullable Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        mThreadPager.start();
-//    }
+    private OnSubMenuClickFromHomeListener mSubMenuClickListener = null;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mThreadPager.start();
+    }
 
     // For Jadwal Hari Ini
     private ProgressBar prg_loading_jadwal;
     private TextView text_no_data_jadwal;
     private LinearLayout view_contentJadwal;
+
+    // Conten Gride View (Module list)
+    private ExpandableHeightGridView grid_content;
 
     @Nullable
     @Override
@@ -69,9 +79,20 @@ public class HomeFragment extends AppFragment {
         prg_loading_jadwal = (ProgressBar) view.findViewById(R.id.prg_loading_jadwal);
         text_no_data_jadwal = (TextView) view.findViewById(R.id.text_no_data_jadwal);
 
+        grid_content = (ExpandableHeightGridView) view.findViewById(R.id.grid_subMenu);
+        grid_content.setExpanded(true);
+        grid_content.setOnItemClickListener(this);
+
+        if (getContext() != null)
+            grid_content.setAdapter(new GridSubMenuAdapter(getContext()));
+
         setcontentValue();
 
         return view;
+    }
+
+    public void setOnSubMenuClickListener(OnSubMenuClickFromHomeListener listener) {
+        mSubMenuClickListener = listener;
     }
 
     private void setcontentValue() {
@@ -81,7 +102,7 @@ public class HomeFragment extends AppFragment {
 
             getSlideShow();
 
-            getCurrentJadwal();
+//            getCurrentJadwal();
         }
     }
 
@@ -191,18 +212,23 @@ public class HomeFragment extends AppFragment {
             try {
                 Log.i(TAG, "run: Thread is start");
 
-                Thread.sleep(1000);
+                Thread.sleep(5000);
                 if (pager_slideImage != null) {
-                    int count = pager_slideImage.getChildCount();
+                    final int count = pager_slideImage.getChildCount();
 
-                    int current = pager_slideImage.getCurrentItem();
+                    final int current = pager_slideImage.getCurrentItem();
 
-                    if (current == (count - 1)) {
-                        pager_slideImage.setCurrentItem(0, true);
-                    } else {
-                        pager_slideImage.setCurrentItem(current + 1, true);
-                    }
+                    mPagerHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
 
+                            if (current == (count - 1)) {
+                                pager_slideImage.setCurrentItem(0, true);
+                            } else {
+                                pager_slideImage.setCurrentItem(current + 1, true);
+                            }
+                        }
+                    });
                 }
             } catch (InterruptedException e) {
                 Log.e(TAG, "run: ", e);
@@ -211,4 +237,22 @@ public class HomeFragment extends AppFragment {
             }
         }
     }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        SubMenuModel item = (SubMenuModel) parent.getItemAtPosition(position);
+
+        if (item != null) {
+            if (mSubMenuClickListener != null) {
+                mSubMenuClickListener.onSubMenuDiklik(item.getId());
+            }
+        }
+    }
+
+    private Handler mPagerHandler = new Handler();
+
+    public interface OnSubMenuClickFromHomeListener {
+        void onSubMenuDiklik(int id);
+    }
+
 }

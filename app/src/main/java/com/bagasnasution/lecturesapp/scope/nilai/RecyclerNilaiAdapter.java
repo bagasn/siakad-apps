@@ -1,6 +1,8 @@
 package com.bagasnasution.lecturesapp.scope.nilai;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -41,10 +43,24 @@ public class RecyclerNilaiAdapter extends RecyclerView.Adapter<RecyclerNilaiAdap
         final ResponseNilai.DataSks data = data_sks.get(i);
 
         try {
+            sksHolder.txvw_no_urut.setText("" + (i + 1));
             sksHolder.txvw_title.setText(data.getNamaMatkul());
-            sksHolder.txvw_smt.setText(data.getSemester());
+            sksHolder.txvw_smt.setText(data.getSemester().toString());
             sksHolder.txvw_nilai.setText(data.getNilaiAkdm());
-            sksHolder.txvw_sks.setText(data.getSks());
+            sksHolder.txvw_sks.setText(data.getSks().toString());
+
+            if (data.getStatusLulus() == 0) {
+                sksHolder.txvw_nilai.setTextColor(
+                        context.getResources().getColor(R.color.color_text_red)
+                );
+                sksHolder.txvw_nilai.setTypeface(Typeface.DEFAULT_BOLD);
+            } else {
+                sksHolder.txvw_nilai.setTextColor(
+                        context.getResources().getColor(R.color.secondary_text)
+                );
+                sksHolder.txvw_nilai.setTypeface(Typeface.DEFAULT);
+            }
+
         } catch (NullPointerException e) {
             Log.e(getClass().getSimpleName(), e.toString(), e);
         }
@@ -69,6 +85,7 @@ public class RecyclerNilaiAdapter extends RecyclerView.Adapter<RecyclerNilaiAdap
     }
 
     class SksHolder extends RecyclerView.ViewHolder {
+        private TextView txvw_no_urut;
         private TextView txvw_title;
         private TextView txvw_smt;
         private TextView txvw_sks;
@@ -81,6 +98,7 @@ public class RecyclerNilaiAdapter extends RecyclerView.Adapter<RecyclerNilaiAdap
 
             container = itemView.findViewById(R.id.container);
 
+            txvw_no_urut = itemView.findViewById(R.id.txvw_no_urut);
             txvw_title = itemView.findViewById(R.id.txvw_title);
             txvw_smt = itemView.findViewById(R.id.txvw_smt);
             txvw_sks = itemView.findViewById(R.id.txvw_sks);

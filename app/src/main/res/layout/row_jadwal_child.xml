@@ -10,6 +10,8 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
         android:stretchColumns="2">
 
         <TableRow>
@@ -17,14 +19,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
+                android:padding="@dimen/text_padding_jadwal_child"
                 android:text="Mata Kuliah"
                 android:textColor="@color/secondary_text" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
+                android:padding="@dimen/text_padding_jadwal_child"
                 android:text=":"
                 android:textColor="@color/secondary_text" />
 
@@ -32,7 +34,7 @@
                 android:id="@+id/text_jadwal_matkul"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
+                android:padding="@dimen/text_padding_jadwal_child"
                 android:textColor="@color/secondary_text" />
 
         </TableRow>
@@ -42,14 +44,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
+                android:padding="@dimen/text_padding_jadwal_child"
                 android:text="Waktu"
                 android:textColor="@color/secondary_text" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
+                android:padding="@dimen/text_padding_jadwal_child"
                 android:text=":"
                 android:textColor="@color/secondary_text" />
 
@@ -57,7 +59,7 @@
                 android:id="@+id/text_jadwal_waktu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
+                android:padding="@dimen/text_padding_jadwal_child"
                 android:textColor="@color/secondary_text" />
 
         </TableRow>
@@ -67,14 +69,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
+                android:padding="@dimen/text_padding_jadwal_child"
                 android:text="Ruang"
                 android:textColor="@color/secondary_text" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
+                android:padding="@dimen/text_padding_jadwal_child"
                 android:text=":"
                 android:textColor="@color/secondary_text" />
 
@@ -82,7 +84,7 @@
                 android:id="@+id/text_jadwal_ruang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
+                android:padding="@dimen/text_padding_jadwal_child"
                 android:textColor="@color/secondary_text" />
 
         </TableRow>
@@ -92,14 +94,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
+                android:padding="@dimen/text_padding_jadwal_child"
                 android:text="Dosen"
                 android:textColor="@color/secondary_text" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
+                android:padding="@dimen/text_padding_jadwal_child"
                 android:text=":"
                 android:textColor="@color/secondary_text" />
 
@@ -107,7 +109,7 @@
                 android:id="@+id/text_jadwal_dosen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
+                android:padding="@dimen/text_padding_jadwal_child"
                 android:textColor="@color/secondary_text" />
 
         </TableRow>

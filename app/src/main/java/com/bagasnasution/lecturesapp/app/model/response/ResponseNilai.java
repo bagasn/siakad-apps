@@ -32,22 +32,22 @@ public class ResponseNilai extends ResponseDefault {
         private String namaMatkul;
         @SerializedName("sks")
         @Expose
-        private String sks;
+        private Integer sks;
         @SerializedName("nilai")
         @Expose
-        private String nilai;
+        private Integer nilai;
         @SerializedName("nilai-akdm")
         @Expose
         private String nilaiAkdm;
         @SerializedName("semester")
         @Expose
-        private String semester;
+        private Integer semester;
         @SerializedName("status")
         @Expose
-        private String statusLulus;
+        private Integer statusLulus;
         @SerializedName("mengulang")
         @Expose
-        private String mengulan;
+        private Boolean mengulan;
 
         public String getKodeMatkul() {
             return kodeMatkul;
@@ -65,19 +65,19 @@ public class ResponseNilai extends ResponseDefault {
             this.namaMatkul = namaMatkul;
         }
 
-        public String getSks() {
+        public Integer getSks() {
             return sks;
         }
 
-        public void setSks(String sks) {
+        public void setSks(Integer sks) {
             this.sks = sks;
         }
 
-        public String getNilai() {
+        public Integer getNilai() {
             return nilai;
         }
 
-        public void setNilai(String nilai) {
+        public void setNilai(Integer nilai) {
             this.nilai = nilai;
         }
 
@@ -89,27 +89,27 @@ public class ResponseNilai extends ResponseDefault {
             this.nilaiAkdm = nilaiAkdm;
         }
 
-        public String getSemester() {
+        public Integer getSemester() {
             return semester;
         }
 
-        public void setSemester(String semester) {
+        public void setSemester(Integer semester) {
             this.semester = semester;
         }
 
-        public String getStatusLulus() {
+        public Integer getStatusLulus() {
             return statusLulus;
         }
 
-        public void setStatusLulus(String statusLulus) {
+        public void setStatusLulus(Integer statusLulus) {
             this.statusLulus = statusLulus;
         }
 
-        public String getMengulan() {
+        public Boolean getMengulan() {
             return mengulan;
         }
 
-        public void setMengulan(String mengulan) {
+        public void setMengulan(Boolean mengulan) {
             this.mengulan = mengulan;
         }
     }

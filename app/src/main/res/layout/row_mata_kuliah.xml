@@ -1,80 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
-    <TableLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/text_kode"
+        android:layout_width="78dp"
         android:layout_height="wrap_content"
-        android:stretchColumns="2">
+        android:layout_alignBottom="@id/text_matkul"
+        android:layout_alignTop="@id/text_matkul"
+        android:layout_gravity="center"
+        android:gravity="center_vertical"
+        android:padding="6dp"
+        android:text="Kode"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/secondary_text" />
 
-        <TableRow>
+    <View
+        android:id="@+id/not_view_1"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@id/text_matkul"
+        android:layout_alignTop="@id/text_matkul"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_toEndOf="@id/text_kode"
+        android:background="@color/divider" />
 
-            <TextView
-                android:id="@+id/text_kode"
-                android:layout_width="72dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:padding="4dp"
-                android:text=""
-                android:textAlignment="center"
-                android:textColor="@color/secondary_text" />
+    <TextView
+        android:id="@+id/text_matkul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/not_view_1"
+        android:layout_toStartOf="@id/not_view_2"
+        android:maxLines="2"
+        android:padding="6dp"
+        android:text="Mata Kuliah"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/secondary_text" />
 
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="2dp"
-                android:layout_marginTop="2dp"
-                android:background="@color/divider" />
+    <View
+        android:id="@+id/not_view_2"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@id/text_matkul"
+        android:layout_alignTop="@id/text_matkul"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_toStartOf="@id/text_sks"
+        android:background="@color/divider" />
 
-            <TextView
-                android:id="@+id/text_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:maxLines="2"
-                android:padding="4dp"
-                android:text=""
-                android:textColor="@color/secondary_text" />
+    <TextView
+        android:id="@+id/text_sks"
+        android:layout_width="52dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/text_matkul"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@id/text_matkul"
+        android:layout_gravity="center"
+        android:gravity="center_vertical"
+        android:padding="6dp"
+        android:text="SKS"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/secondary_text" />
 
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="2dp"
-                android:layout_marginTop="2dp"
-                android:background="@color/divider" />
-
-            <TextView
-                android:id="@+id/text_sks"
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:padding="4dp"
-                android:text=""
-                android:textAlignment="center"
-                android:textColor="@color/secondary_text" />
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="2dp"
-                android:layout_marginTop="2dp"
-                android:background="@color/divider" />
-
-            <TextView
-                android:id="@+id/text_semester"
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:padding="4dp"
-                android:text=""
-                android:textAlignment="center"
-                android:textColor="@color/secondary_text" />
-
-        </TableRow>
-
-    </TableLayout>
-
-</LinearLayout>
+</RelativeLayout>

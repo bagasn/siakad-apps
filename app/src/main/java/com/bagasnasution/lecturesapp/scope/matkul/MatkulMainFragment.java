@@ -9,6 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import com.bagasnasution.lecturesapp.R;
 import com.bagasnasution.lecturesapp.app.config.Config;
@@ -17,6 +20,9 @@ import com.bagasnasution.lecturesapp.app.engine.AppActivity;
 import com.bagasnasution.lecturesapp.app.engine.AppFragment;
 import com.bagasnasution.lecturesapp.app.engine.AppHelper;
 import com.bagasnasution.lecturesapp.app.model.response.ResponseMatkul;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -101,5 +107,21 @@ public class MatkulMainFragment extends AppFragment {
 
         AppHelper.showToast(getContext(), "Tidak ada data!");
     }
+//
+//    private void addToTable(ResponseMatkul.MatKul matKul) {
+//        TableRow vRow = (TableRow) LayoutInflater.from(getContext())
+//                .inflate(R.layout.row_mata_kuliah, table_content, false);
+//
+//        if (vRow != null) {
+//            ((TextView) vRow.findViewById(R.id.text_kode))
+//                    .setText(matKul.getKode());
+//            ((TextView) vRow.findViewById(R.id.text_matkul))
+//                    .setText(matKul.getNama());
+//            ((TextView) vRow.findViewById(R.id.text_sks))
+//                    .setText(matKul.getSks());
+//
+//            table_content.addView(vRow);
+//        }
+//    }
 
 }

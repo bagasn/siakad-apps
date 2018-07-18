@@ -36,12 +36,10 @@ public class MataKuliahAdapter extends ArrayAdapter<ResponseMatkul.MatKul> {
 
         ((TextView) v.findViewById(R.id.text_kode))
                 .setText(data.getKode());
-        ((TextView) v.findViewById(R.id.text_name))
+        ((TextView) v.findViewById(R.id.text_matkul))
                 .setText(data.getNama());
         ((TextView) v.findViewById(R.id.text_sks))
                 .setText(data.getSks());
-        ((TextView) v.findViewById(R.id.text_semester))
-                .setText(data.getSemester());
 
         return v;
     }

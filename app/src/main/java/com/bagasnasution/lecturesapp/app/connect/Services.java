@@ -32,12 +32,13 @@ public interface Services {
     @GET("get_nilai.php")
     Call<ResponseNilai> getNilai(
             @Query("token") String token,
-            @Query("username") String username
+            @Query("npm") String username
     );
 
     @GET("get_jadwal.php")
     Call<ResponseJadwal> getJadwal(
-            @Query("token") String token
+            @Query("token") String token,
+            @Query("npm") String npm
     );
 
     @GET("get_jadwal_hari_ini.php")

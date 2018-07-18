@@ -3,6 +3,7 @@ package com.bagasnasution.lecturesapp;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
@@ -20,15 +21,20 @@ import android.widget.Toast;
 import com.bagasnasution.lecturesapp.app.db.DBUser;
 import com.bagasnasution.lecturesapp.app.engine.AppActivity;
 import com.bagasnasution.lecturesapp.app.engine.AppFragment;
+import com.bagasnasution.lecturesapp.app.model.SubMenuModel;
 import com.bagasnasution.lecturesapp.scope.jadwal.ListJadwalFragment;
 import com.bagasnasution.lecturesapp.scope.matkul.MatkulMainFragment;
 import com.bagasnasution.lecturesapp.scope.nilai.NilaiFragment;
 
 public class HomeActivity extends AppActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        HomeFragment.OnSubMenuClickFromHomeListener {
 
     private static final int RESOURCE_FRAGMENT = R.id.fragment;
     private FragmentTransaction fragmentTransaction;
+
+    private NavigationView mNavigationView;
+    private DrawerLayout mDrawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,23 +44,26 @@ public class HomeActivity extends AppActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+                this, mDrawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        mNavigationView = (NavigationView) findViewById(R.id.nav_view);
+        mNavigationView.setNavigationItemSelectedListener(this);
 
-        setContentNavigationHeader(navigationView);
+        setContentNavigationHeader(mNavigationView);
 
         TextView textVersionName = (TextView) findViewById(R.id.txvw_versionName);
         textVersionName.setText("Version " + BuildConfig.VERSION_NAME);
 
         // Fragment Initiate
+        HomeFragment homeFragment = new HomeFragment();
+        homeFragment.setOnSubMenuClickListener(this);
+
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(RESOURCE_FRAGMENT, new HomeFragment(), null);
+        fragmentTransaction.add(RESOURCE_FRAGMENT, homeFragment, null);
 //        fragmentTransaction.add(RESOURCE_FRAGMENT, new HomeFragment(), getResources().getString(R.string.fragment_home));
         fragmentTransaction.commit();
     }
@@ -85,8 +94,7 @@ public class HomeActivity extends AppActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        }
-        else {
+        } else {
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
             alert.setMessage("Want to exit?");
             alert.setNegativeButton("Cancel", null);
@@ -135,6 +143,7 @@ public class HomeActivity extends AppActivity
         switch (item.getItemId()) {
             case R.id.nav_home:
                 fragment = new HomeFragment();
+                ((HomeFragment) fragment).setOnSubMenuClickListener(this);
                 break;
             case R.id.nav_matkul:
                 fragment = new MatkulMainFragment();
@@ -144,6 +153,9 @@ public class HomeActivity extends AppActivity
                 break;
             case R.id.nav_nilai:
                 fragment = new NilaiFragment();
+                break;
+            case R.id.nav_news:
+                Toast.makeText(this, "not available now!", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_krs:
                 Toast.makeText(this, "not available now!", Toast.LENGTH_SHORT).show();
@@ -165,5 +177,28 @@ public class HomeActivity extends AppActivity
         return false;
     }
 
+    @Override
+    public void onSubMenuDiklik(int id) {
+        @IdRes int idres = 0;
+        switch (id) {
+            case SubMenuModel.MENU_JADWAL:
+                idres = R.id.nav_jadwal;
+                break;
+            case SubMenuModel.MENU_MATAKULIAH:
+                idres = R.id.nav_matkul;
+                break;
+            case SubMenuModel.MENU_TRANSKRIP:
+                idres = R.id.nav_nilai;
+                break;
+            case SubMenuModel.MENU_NEWS:
+                idres = R.id.nav_news;
+                break;
+        }
 
+        if (idres != 0) {
+            MenuItem item = mNavigationView.getMenu().findItem(idres);
+            boolean selected = onNavigationItemSelected(item);
+            item.setChecked(selected);
+        }
+    }
 }

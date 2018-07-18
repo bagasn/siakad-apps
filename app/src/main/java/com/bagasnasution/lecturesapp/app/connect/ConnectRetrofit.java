@@ -133,7 +133,7 @@ public class ConnectRetrofit {
     public static synchronized void getJadwal(Context context, final OnResponse<ResponseJadwal> listener) {
         String username = DBUser.getDataUser(context).getNpm();
 
-        getConnection().getJadwal(TOKEN)
+        getConnection().getJadwal(TOKEN, username)
                 .enqueue(new Callback<ResponseJadwal>() {
                              @Override
                              public void onResponse(Call<ResponseJadwal> call, Response<ResponseJadwal> response) {

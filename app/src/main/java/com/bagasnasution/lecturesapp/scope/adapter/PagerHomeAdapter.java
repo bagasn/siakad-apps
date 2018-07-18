@@ -1,5 +1,6 @@
 package com.bagasnasution.lecturesapp.scope.adapter;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,8 @@ import android.widget.ImageView;
 import com.bagasnasution.lecturesapp.R;
 import com.bagasnasution.lecturesapp.app.model.SlideHomeModel;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestFutureTarget;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,8 +78,16 @@ public class PagerHomeAdapter extends FragmentPagerAdapter {
 
             imv_content = (ImageView) view.findViewById(R.id.imv_content);
 
-            Glide.with(getContext())
+//            Glide.with(getContext())
+//                    .load(mLink)
+//                    .placeholder(R.drawable.ic_image_empty)
+//                    .error(R.drawable.ic_image_empty)
+//                    .into(imv_content);
+
+            Picasso.get()
                     .load(mLink)
+                    .placeholder(R.drawable.ic_image_empty)
+                    .error(R.drawable.ic_image_empty)
                     .into(imv_content);
 
             return view;
