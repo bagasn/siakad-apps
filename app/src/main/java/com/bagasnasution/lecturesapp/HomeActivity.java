@@ -24,6 +24,7 @@ import com.bagasnasution.lecturesapp.app.engine.AppFragment;
 import com.bagasnasution.lecturesapp.app.model.SubMenuModel;
 import com.bagasnasution.lecturesapp.scope.jadwal.ListJadwalFragment;
 import com.bagasnasution.lecturesapp.scope.matkul.MatkulMainFragment;
+import com.bagasnasution.lecturesapp.scope.news.NewsFragment;
 import com.bagasnasution.lecturesapp.scope.nilai.NilaiFragment;
 
 public class HomeActivity extends AppActivity
@@ -155,7 +156,7 @@ public class HomeActivity extends AppActivity
                 fragment = new NilaiFragment();
                 break;
             case R.id.nav_news:
-                Toast.makeText(this, "not available now!", Toast.LENGTH_SHORT).show();
+                fragment = new NewsFragment();
                 break;
             case R.id.nav_krs:
                 Toast.makeText(this, "not available now!", Toast.LENGTH_SHORT).show();

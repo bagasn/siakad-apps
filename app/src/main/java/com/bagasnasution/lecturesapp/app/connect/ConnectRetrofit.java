@@ -15,6 +15,7 @@ import com.bagasnasution.lecturesapp.app.model.response.ResponseJadwal;
 import com.bagasnasution.lecturesapp.app.model.response.ResponseListSKS;
 import com.bagasnasution.lecturesapp.app.model.response.ResponseLogin;
 import com.bagasnasution.lecturesapp.app.model.response.ResponseMatkul;
+import com.bagasnasution.lecturesapp.app.model.response.ResponseNews;
 import com.bagasnasution.lecturesapp.app.model.response.ResponseNilai;
 
 import okhttp3.MediaType;
@@ -194,6 +195,23 @@ public class ConnectRetrofit {
                         listener.onFailure(call, throwable);
                     }
                 });
+    }
+
+    public static synchronized void getNews(final OnResponse<ResponseNews> listener) {
+
+        getConnection().getNews(TOKEN)
+                .enqueue(new Callback<ResponseNews>() {
+                    @Override
+                    public void onResponse(Call<ResponseNews> call, Response<ResponseNews> response) {
+                        listener.onResponse(call, response);
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseNews> call, Throwable throwable) {
+                        listener.onFailure(call, throwable);
+                    }
+                });
+
     }
 
     private static boolean isResponse(Response<? extends ResponseDefault> response) {

@@ -37,11 +37,15 @@ public class AppHelper {
     }
 
     public static void showToast(Context context, String mText){
-        Toast.makeText(context, mText, Toast.LENGTH_LONG).show();
+        try {
+            Toast.makeText(context, mText, Toast.LENGTH_LONG).show();
+        } catch (NullPointerException e) {}
     }
 
     public static void showToast(Context context, String mText, String mCode){
+        try {
         Toast.makeText(context, mText + "[" + mCode + "]", Toast.LENGTH_LONG).show();
+        } catch (NullPointerException e) {}
     }
 
     public static ProgressDialog makeProgressDialod(Context context) {

@@ -56,4 +56,9 @@ public interface Services {
             @Query("token") String token
     );
 
+    @GET("get_news.php")
+    Call<ResponseNews> getNews(
+            @Query("token") String token
+    );
+
 }
