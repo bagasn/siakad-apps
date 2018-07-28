@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.bagasnasution.lecturesapp.R;
 import com.bagasnasution.lecturesapp.app.model.response.ResponseNews;
-import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

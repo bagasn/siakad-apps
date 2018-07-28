@@ -34,6 +34,10 @@
             android:name=".scope.news.NewsDetailActivity"
             android:label="Detail News"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".scope.profil.ProfilActivity"
+            android:label="Profil"
+            android:screenOrientation="portrait" />
 
 
         <provider

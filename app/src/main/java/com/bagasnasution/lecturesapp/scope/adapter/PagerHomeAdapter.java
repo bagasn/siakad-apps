@@ -14,8 +14,7 @@ import android.widget.ImageView;
 
 import com.bagasnasution.lecturesapp.R;
 import com.bagasnasution.lecturesapp.app.model.SlideHomeModel;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestFutureTarget;
+import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -86,8 +85,10 @@ public class PagerHomeAdapter extends FragmentPagerAdapter {
 
             Picasso.get()
                     .load(mLink)
+                    .noFade()
                     .placeholder(R.drawable.ic_image_empty)
                     .error(R.drawable.ic_image_empty)
+                    .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
                     .into(imv_content);
 
             return view;

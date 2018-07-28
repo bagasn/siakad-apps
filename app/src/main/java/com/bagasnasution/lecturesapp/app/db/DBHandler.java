@@ -78,6 +78,7 @@ public class DBHandler {
             user.setJenisKelamin(cursor.getString(4));
             user.setFakultas(cursor.getString(5));
             user.setProdi(cursor.getString(6));
+            user.setLinkFoto(cursor.getString(7));
         }
 
         cursor.close();

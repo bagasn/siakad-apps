@@ -2,6 +2,7 @@ package com.bagasnasution.lecturesapp;
 
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +28,9 @@ import com.bagasnasution.lecturesapp.scope.jadwal.ListJadwalFragment;
 import com.bagasnasution.lecturesapp.scope.matkul.MatkulMainFragment;
 import com.bagasnasution.lecturesapp.scope.news.NewsFragment;
 import com.bagasnasution.lecturesapp.scope.nilai.NilaiFragment;
+import com.bagasnasution.lecturesapp.scope.profil.ProfilActivity;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.Picasso;
 
 public class HomeActivity extends AppActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -88,6 +93,27 @@ public class HomeActivity extends AppActivity
                 .setText(fullname);
         ((TextView) header.findViewById(R.id.text_emailUser))
                 .setText(user.getEmail());
+
+        ImageView image = header.findViewById(R.id.imageView);
+
+        String link = user.getLinkFoto();
+        if (!link.isEmpty()) {
+            Picasso.get()
+                    .load(link)
+                    .noFade()
+                    .placeholder(R.drawable.ic_image_empty)
+                    .error(R.drawable.ic_image_empty)
+                    .memoryPolicy(MemoryPolicy.NO_STORE)
+                    .into(image);
+        }
+
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ProfilActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

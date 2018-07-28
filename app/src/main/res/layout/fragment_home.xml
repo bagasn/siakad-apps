@@ -10,6 +10,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:scrollbarSize="4dp"
         android:scrollbarStyle="insideOverlay"
         android:scrollbars="vertical">
@@ -30,7 +32,8 @@
                     android:id="@+id/text_hello"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="6dp"
+                    android:focusable="true"
+                    android:focusedByDefault="true"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
                     android:textColor="@color/colorAccent" />
 
@@ -142,7 +145,7 @@
                 android:numColumns="auto_fit"
                 android:stretchMode="columnWidth"
                 android:verticalSpacing="10dp"
-                tools:listitem="@layout/row_sub_menu"></com.bagasnasution.lecturesapp.app.view.ExpandableHeightGridView>
+                tools:listitem="@layout/row_sub_menu" />
 
         </LinearLayout>
 

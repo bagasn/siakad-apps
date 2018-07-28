@@ -11,10 +11,12 @@ import android.widget.TextView;
 import com.bagasnasution.lecturesapp.R;
 import com.bagasnasution.lecturesapp.app.engine.AppActivity;
 import com.bagasnasution.lecturesapp.app.model.response.ResponseNews;
+import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class NewsDetailActivity extends AppActivity {
 
@@ -55,17 +57,19 @@ public class NewsDetailActivity extends AppActivity {
         if (data_view != null) {
             Picasso.get()
                     .load(data_view.getImage())
+                    .noFade()
                     .placeholder(R.drawable.ic_image_empty)
                     .error(R.drawable.ic_image_empty)
+                    .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
                     .into(image_logo);
 
 
             text_title.setText(data_view.getJudul());
 
             try {
-                Date date = new SimpleDateFormat("yyyy-MM-dd").parse(data_view.getTanggal());
+                Date date = new SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(data_view.getTanggal());
 
-                String tanggal = new SimpleDateFormat("dd MMMM yyyy").format(date);
+                String tanggal = new SimpleDateFormat("dd MMMM yyyy", Locale.US).format(date);
 
                 text_waktu.setText(tanggal);
             } catch (Exception e) {

@@ -2,6 +2,7 @@ package com.bagasnasution.lecturesapp;
 
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +10,8 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethod;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -52,11 +55,11 @@ public class LoginActivity extends AppActivity implements View.OnClickListener {
         progressBar = (ProgressBar) findViewById(R.id.prgs_load);
 
         btn_login.setOnClickListener(this);
-        edtx_username.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        edtx_password.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    btn_login.performClick();
+                if (actionId == 221) {
+                    onClick(btn_login);
                     return true;
                 }
                 return false;
@@ -67,6 +70,7 @@ public class LoginActivity extends AppActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        hideKeyBoard(v);
         validasiLogin();
     }
 
@@ -121,6 +125,7 @@ public class LoginActivity extends AppActivity implements View.OnClickListener {
         user.setFakultas(data.getFakultas());
         user.setProdi(data.getProdi());
         user.setJenisKelamin(data.getJenisKelamin());
+        user.setLinkFoto(data.getLinkFoto());
 
         if (DBUser.insertDataUser(this, user)) {
             new AppHelper().getInstance(this).setLoginInitiate(true);
@@ -144,6 +149,18 @@ public class LoginActivity extends AppActivity implements View.OnClickListener {
         edtx_password.setEnabled(false);
         btn_login.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
+    }
+
+    private void hideKeyBoard(View view) {
+        try {
+
+            InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (view != null) {
+                manager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
+        } catch (NullPointerException e) {
+
+        }
     }
 
 }

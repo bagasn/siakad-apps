@@ -63,6 +63,9 @@ public class ResponseProfile extends ResponseDefault {
         @SerializedName("email")
         @Expose
         private String email;
+        @SerializedName("link_foto")
+        @Expose
+        private String linkFoto;
         @SerializedName("tahun_akademik")
         @Expose
         private String tahunAkademik;
@@ -130,6 +133,14 @@ public class ResponseProfile extends ResponseDefault {
 
         public void setEmail(String email) {
             this.email = email;
+        }
+
+        public String getLinkFoto() {
+            return linkFoto;
+        }
+
+        public void setLinkFoto(String linkFoto) {
+            this.linkFoto = linkFoto;
         }
 
         public String getTahunAkademik() {

@@ -23,4 +23,6 @@
 
     <color name="color_text_red">#e21919</color>
 
+    <color name="color_white_transparant">#32ffffff</color>
+
 </resources>

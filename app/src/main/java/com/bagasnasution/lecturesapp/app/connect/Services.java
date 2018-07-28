@@ -61,4 +61,10 @@ public interface Services {
             @Query("token") String token
     );
 
+    @GET("get_profil.php")
+    Call<ResponseProfile> getProfil(
+            @Query("token") String token,
+            @Query("npm") String npm
+    );
+
 }

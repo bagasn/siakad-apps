@@ -17,6 +17,7 @@ import com.bagasnasution.lecturesapp.app.model.response.ResponseLogin;
 import com.bagasnasution.lecturesapp.app.model.response.ResponseMatkul;
 import com.bagasnasution.lecturesapp.app.model.response.ResponseNews;
 import com.bagasnasution.lecturesapp.app.model.response.ResponseNilai;
+import com.bagasnasution.lecturesapp.app.model.response.ResponseProfile;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -208,6 +209,24 @@ public class ConnectRetrofit {
 
                     @Override
                     public void onFailure(Call<ResponseNews> call, Throwable throwable) {
+                        listener.onFailure(call, throwable);
+                    }
+                });
+
+    }
+
+    public static synchronized void getProfil(Context context, final OnResponse<ResponseProfile> listener) {
+        String username = DBUser.getDataUser(context).getNpm();
+
+        getConnection().getProfil(TOKEN, username)
+                .enqueue(new Callback<ResponseProfile>() {
+                    @Override
+                    public void onResponse(Call<ResponseProfile> call, Response<ResponseProfile> response) {
+                        listener.onResponse(call, response);
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseProfile> call, Throwable throwable) {
                         listener.onFailure(call, throwable);
                     }
                 });

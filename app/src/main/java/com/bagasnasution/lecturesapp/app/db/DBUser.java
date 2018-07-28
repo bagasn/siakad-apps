@@ -18,6 +18,7 @@ public class DBUser {
     public static final String FIELD_JENIS_KELAMIN = "jenis_kel";
     public static final String FIELD_FAKULTAS = "fakultas";
     public static final String FIELD_PRODI = "prodi";
+    public static final String FIELD_LINK_FOTO = "link_foto";
 
     public static final String QUERY_CREATE_TABLE_USER = "CREATE TABLE IF NOT EXISTS `" + TABLE_NAME + "` ("
             + FIELD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -26,7 +27,8 @@ public class DBUser {
             + FIELD_EMAIL + " TEXT, "
             + FIELD_JENIS_KELAMIN + " TEXT, "
             + FIELD_FAKULTAS + " TEXT, "
-            + FIELD_PRODI + " TEXT "
+            + FIELD_PRODI + " TEXT, "
+            + FIELD_LINK_FOTO + " TEXT "
             + ")";
 
     public static final String[] FIELDS = new String[]{
@@ -36,7 +38,8 @@ public class DBUser {
             FIELD_EMAIL,
             FIELD_JENIS_KELAMIN,
             FIELD_FAKULTAS,
-            FIELD_PRODI
+            FIELD_PRODI,
+            FIELD_LINK_FOTO
     };
 
 
@@ -62,6 +65,7 @@ public class DBUser {
         cv.put("jenis_kel", user.getJenisKelamin());
         cv.put("fakultas", user.getFakultas());
         cv.put("prodi", user.getProdi());
+        cv.put("link_foto", user.getLinkFoto());
 
         return cv;
     }
@@ -85,6 +89,7 @@ public class DBUser {
         private String jenisKelamin;
         private String fakultas;
         private String prodi;
+        private String linkFoto;
 
         public String getId() {
             return id;
@@ -140,6 +145,14 @@ public class DBUser {
 
         public void setProdi(String prodi) {
             this.prodi = prodi;
+        }
+
+        public String getLinkFoto() {
+            return linkFoto;
+        }
+
+        public void setLinkFoto(String linkFoto) {
+            this.linkFoto = linkFoto;
         }
     }
 }

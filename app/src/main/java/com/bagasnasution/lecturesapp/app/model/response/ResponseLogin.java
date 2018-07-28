@@ -45,6 +45,9 @@ public class ResponseLogin extends ResponseDefault {
         @SerializedName("prodi")
         @Expose
         private String prodi;
+        @SerializedName("link_foto")
+        @Expose
+        private String linkFoto;
 
         public String getNim() {
             return nim;
@@ -100,6 +103,14 @@ public class ResponseLogin extends ResponseDefault {
 
         public void setProdi(String prodi) {
             this.prodi = prodi;
+        }
+
+        public String getLinkFoto() {
+            return linkFoto;
+        }
+
+        public void setLinkFoto(String linkFoto) {
+            this.linkFoto = linkFoto;
         }
     }
 }
