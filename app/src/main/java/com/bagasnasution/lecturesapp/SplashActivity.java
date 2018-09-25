@@ -17,12 +17,17 @@ public class SplashActivity extends AppActivity {
         initComponent();
     }
 
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+    }
+
     private void initComponent() {
         Thread timer = new Thread(){
             @Override
             public void run() {
                 try {
-                    sleep(200);
+                    sleep(1000);
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {
@@ -35,6 +40,10 @@ public class SplashActivity extends AppActivity {
 
     private synchronized boolean validasiLogin() {
         AppHelper helper = new AppHelper().getInstance(this);
+
+        if (isDestroyed())
+            return false;
+
         if (helper.isLoginInitiate()) {
             startActivity(new Intent(this, HomeActivity.class));
             finish();

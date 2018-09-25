@@ -32,6 +32,8 @@ import com.bagasnasution.lecturesapp.scope.profil.ProfilActivity;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class HomeActivity extends AppActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         HomeFragment.OnSubMenuClickFromHomeListener {
@@ -94,7 +96,7 @@ public class HomeActivity extends AppActivity
         ((TextView) header.findViewById(R.id.text_emailUser))
                 .setText(user.getEmail());
 
-        ImageView image = header.findViewById(R.id.imageView);
+        CircleImageView image = header.findViewById(R.id.imageView);
 
         String link = user.getLinkFoto();
         if (!link.isEmpty()) {

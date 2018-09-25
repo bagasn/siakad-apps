@@ -12,6 +12,8 @@
     <color name="icons">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>
 
+    <color name="icon_red">#ff7b7b</color>
+
 
     <!-- Color onClick -->
     <color name="colorPrimaryOnClick">#f906937f</color>

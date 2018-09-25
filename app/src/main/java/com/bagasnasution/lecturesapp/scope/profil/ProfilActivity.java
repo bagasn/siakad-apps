@@ -15,8 +15,6 @@ import com.bagasnasution.lecturesapp.app.model.response.ResponseProfile;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
-import java.io.File;
-
 import retrofit2.Call;
 import retrofit2.Response;
 

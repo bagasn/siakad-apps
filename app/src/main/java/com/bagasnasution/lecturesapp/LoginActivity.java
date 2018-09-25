@@ -33,12 +33,16 @@ import retrofit2.Response;
  */
 
 public class LoginActivity extends AppActivity implements View.OnClickListener {
+
+    private static final String TAG = "LoginActivity";
+
     private Button btn_login;
     private EditText edtx_username;
     private EditText edtx_password;
 
-    private ProgressDialog pDialog;
-    private ProgressBar progressBar;
+    private View layoutLoading;
+    private View layoutFormLogin;
+
     private AppHelper helper;
 
     @Override
@@ -47,12 +51,13 @@ public class LoginActivity extends AppActivity implements View.OnClickListener {
         setContentView(R.layout.activity_login);
 
         helper = new AppHelper().getInstance(this);
-        pDialog = AppHelper.makeProgressDialod(this);
 
         btn_login = (Button) findViewById(R.id.btn_login);
         edtx_username = (EditText) findViewById(R.id.edtx_username);
         edtx_password = (EditText) findViewById(R.id.edtx_password);
-        progressBar = (ProgressBar) findViewById(R.id.prgs_load);
+
+        layoutLoading = findViewById(R.id.layout_loading);
+        layoutFormLogin = findViewById(R.id.layout_formLogin);
 
         btn_login.setOnClickListener(this);
         edtx_password.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -66,6 +71,8 @@ public class LoginActivity extends AppActivity implements View.OnClickListener {
             }
         });
 
+        showLoading(false);
+
     }
 
     @Override
@@ -76,20 +83,20 @@ public class LoginActivity extends AppActivity implements View.OnClickListener {
 
     private void validasiLogin() {
         if (edtx_username.getText().toString().isEmpty()) {
-            Toast.makeText(this, "Username Kosong!", Toast.LENGTH_LONG).show();
+            edtx_username.setError("NPM tidak boleh kosong");
             edtx_username.requestFocus();
-            return;
         } else if (edtx_password.getText().toString().isEmpty()) {
-            Toast.makeText(this, "Password Kosong!", Toast.LENGTH_LONG).show();
+            edtx_password.setError("Password tidak boleh kosong");
             edtx_password.requestFocus();
-            return;
         } else {
             doLogin();
         }
     }
 
     private void doLogin() {
-        setDisable();
+
+        showLoading(true);
+
         String username = edtx_username.getText().toString();
         String password = toMD5(edtx_password.getText().toString());
 
@@ -102,7 +109,7 @@ public class LoginActivity extends AppActivity implements View.OnClickListener {
                     onLoginSuccess(response);
                 } else {
                     AppHelper.showToast(LoginActivity.this, response.body().getMessage());
-                    setEnable();
+                    showLoading(false);
                 }
 
             }
@@ -110,10 +117,24 @@ public class LoginActivity extends AppActivity implements View.OnClickListener {
             @Override
             public void onFailure(Call<ResponseLogin> call, Throwable throwable) {
                 Toast.makeText(getApplicationContext(), throwable.toString(), Toast.LENGTH_LONG).show();
-                Log.e("Failure", "--- Login Failure --->> ", throwable);
-                setEnable();
+
+                showLoading(false);
             }
         });
+    }
+
+    private void showLoading(boolean show) {
+        if (isDestroyed()) {
+            return;
+        }
+
+        if (show) {
+            layoutLoading.setVisibility(View.VISIBLE);
+            layoutFormLogin.setVisibility(View.INVISIBLE);
+        } else {
+            layoutFormLogin.setVisibility(View.VISIBLE);
+            layoutLoading.setVisibility(View.GONE);
+        }
     }
 
     private void onLoginSuccess(Response<ResponseLogin> response) {
@@ -137,29 +158,14 @@ public class LoginActivity extends AppActivity implements View.OnClickListener {
 
     }
 
-    private void setEnable() {
-        edtx_username.setEnabled(true);
-        edtx_password.setEnabled(true);
-        btn_login.setVisibility(View.VISIBLE);
-        progressBar.setVisibility(View.GONE);
-    }
-
-    private void setDisable() {
-        edtx_username.setEnabled(false);
-        edtx_password.setEnabled(false);
-        btn_login.setVisibility(View.GONE);
-        progressBar.setVisibility(View.VISIBLE);
-    }
-
     private void hideKeyBoard(View view) {
         try {
-
             InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             if (view != null) {
                 manager.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
         } catch (NullPointerException e) {
-
+            Log.e(TAG, "hideKeyBoard: ", e);
         }
     }
 

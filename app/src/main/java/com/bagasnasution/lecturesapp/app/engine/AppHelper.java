@@ -3,6 +3,9 @@ package com.bagasnasution.lecturesapp.app.engine;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.bagasnasution.lecturesapp.app.config.Config;
@@ -81,4 +84,14 @@ public class AppHelper {
         return nyet[0];
     }
 
+    public static void hideKeyBoard(Context context, View view) {
+        try {
+            InputMethodManager manager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (view != null) {
+                manager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
+        } catch (Exception e) {
+            Log.e("AppHelper", "hideKeyBoard: " + "failed to hide soft input keyboard");
+        }
+    }
 }

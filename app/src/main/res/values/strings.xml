@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lectures App</string>
+    <string name="app_name">SIAKAD Mobile</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -7,6 +7,10 @@
     <string name="action_settings">Settings</string>
 
     <string name="fragment_home">Home Fragment</string>
-    <string name="app_description">Lectures App by Bagas Nasution</string>
+    <string name="app_description">SIAKAD Mobile by Bagas Nasution</string>
+    <string name="npm">NPM</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="logging_in">Logging in...</string>
 
 </resources>
