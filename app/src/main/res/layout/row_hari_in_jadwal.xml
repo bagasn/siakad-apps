@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_hari"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/color_bg_jadwal"
+    app:cardCornerRadius="0dp"
+    app:cardPreventCornerOverlap="true"
+    app:contentPadding="5dp">
+
+    <LinearLayout
+        android:id="@+id/llyt_hari"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txvw_hari"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Senin"
+            android:textSize="18dp"
+            android:textColor="@color/primary_text"
+            android:textAllCaps="true"
+            android:textStyle="bold" />
+
+        <ListView
+            android:id="@+id/list_matkul"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/transparent"
+            android:divider="@null"
+            android:dividerHeight="2dp">
+
+        </ListView>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

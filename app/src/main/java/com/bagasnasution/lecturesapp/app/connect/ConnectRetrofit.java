@@ -6,7 +6,9 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.bagasnasution.lecturesapp.app.config.Config;
+import com.bagasnasution.lecturesapp.app.db.DBUser;
 import com.bagasnasution.lecturesapp.app.model.ResponseLogin;
+import com.bagasnasution.lecturesapp.app.model.ResponseSks;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -19,7 +21,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ConnectRetrofit {
-    private static final int timeout = 20;
+    private static final int timeout = 120;
     private static final String BASE_URL = Config.BASE_URL;
     private static final String TOKEN = Config.API_TOKEN;
 
@@ -84,9 +86,27 @@ public class ConnectRetrofit {
 
     }
 
+    public static synchronized void getSksList(Context context, final OnResponse<ResponseSks> listener) {
+        String username = DBUser.getDataUser(context).getNpm();
+
+        getConnection().getListSks(TOKEN, username)
+                .enqueue(new Callback<ResponseSks>() {
+                    @Override
+                    public void onResponse(Call<ResponseSks> call, Response<ResponseSks> response) {
+                        listener.onResponse(call, response);
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseSks> call, Throwable throwable) {
+                        listener.onFailure(call, throwable);
+                    }
+                });
+    }
+
 
     public interface OnResponse<N> {
         void onResponse(Call<N> call, Response<N> response);
+
         void onFailure(Call<N> call, Throwable throwable);
     }
 

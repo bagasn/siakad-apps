@@ -5,10 +5,15 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.constraint.solver.Goal;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bagasnasution.lecturesapp.app.config.Config;
@@ -31,6 +36,7 @@ public class LoginActivity extends AppActivity implements View.OnClickListener {
     private EditText edtx_password;
 
     private ProgressDialog pDialog;
+    private ProgressBar progressBar;
     private AppHelper helper;
 
     @Override
@@ -44,8 +50,19 @@ public class LoginActivity extends AppActivity implements View.OnClickListener {
         btn_login = (Button) findViewById(R.id.btn_login);
         edtx_username = (EditText) findViewById(R.id.edtx_username);
         edtx_password = (EditText) findViewById(R.id.edtx_password);
+        progressBar = (ProgressBar) findViewById(R.id.prgs_load);
 
         btn_login.setOnClickListener(this);
+        edtx_username.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    btn_login.performClick();
+                    return true;
+                }
+                return false;
+            }
+        });
 
     }
 
@@ -69,7 +86,8 @@ public class LoginActivity extends AppActivity implements View.OnClickListener {
     }
 
     private void doLogin() {
-        pDialog.show();
+//        pDialog.show();
+        setDisable();
         String username = edtx_username.getText().toString();
         String password = toMD5(edtx_password.getText().toString());
 
@@ -83,14 +101,16 @@ public class LoginActivity extends AppActivity implements View.OnClickListener {
                 } else {
                     AppHelper.showToast(LoginActivity.this, response.body().getMessage());
                 }
-                pDialog.dismiss();
+//                pDialog.dismiss();
+                setEnable();
             }
 
             @Override
             public void onFailure(Call<ResponseLogin> call, Throwable throwable) {
                 Toast.makeText(getApplicationContext(), throwable.toString(), Toast.LENGTH_LONG).show();
                 Log.e("Failure", "--- Login Failure --->> ", throwable);
-                pDialog.dismiss();
+                setEnable();
+//                pDialog.dismiss();
             }
         });
     }
@@ -117,6 +137,20 @@ public class LoginActivity extends AppActivity implements View.OnClickListener {
             Toast.makeText(this, "DataBaseExcaption", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    private void setEnable() {
+        edtx_username.setEnabled(true);
+        edtx_password.setEnabled(true);
+        btn_login.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.GONE);
+    }
+
+    private void setDisable() {
+        edtx_username.setEnabled(false);
+        edtx_password.setEnabled(false);
+        btn_login.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
     }
 
 }
