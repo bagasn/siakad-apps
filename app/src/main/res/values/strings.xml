@@ -12,5 +12,7 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="logging_in">Logging in...</string>
+    <string name="total_sks">Total SKS</string>
+    <string name="total_mata_kuliah">Total Mata Kuliah</string>
 
 </resources>

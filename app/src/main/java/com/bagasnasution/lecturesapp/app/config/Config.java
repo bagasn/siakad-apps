@@ -10,19 +10,20 @@ public class Config {
 
     /* DATABASE DECLARATION */
     public static final String DATABASE_NAME = "lecturesapp_db_master_lectapp.db";
-    public static final int DATABASE_VERSION = 6;
+    public static final int DATABASE_VERSION = 7;
 
     /** Backend Declaration */
 
     /* Real */
-    public static final String BASE_URL = "https://siakad-skripsi.000webhostapp.com/";
+//    public static final String BASE_URL = "https://siakad-skripsi.000webhostapp.com/";
 
     /* Dummy */
 
 //  office
-//    public static final String BASE_URL = "http://10.0.2.2:8080/b/demo_app/ta-api/";
+    public static final String BASE_URL = "http://10.0.2.2:8080/siakad/";
 //  home
-//    public static final String BASE_URL = "http://10.0.2.2:8080/b/demo_app/ta-api/";
+//    public static final String BASE_URL = "http://10.0.2.2:8080/siakad/";
+//    public static final String BASE_URL = "http://192.168.0.2/siakad/";
 //  linux
 //    public static final String BASE_URL = "http://192.168.0.2/b/demo/ta-api/";
 
@@ -34,6 +35,8 @@ public class Config {
     /* Shared Preferences */
     public static final String PREFERENCES_MASTER = "SharedPreferencesMaster." + BuildConfig.APPLICATION_ID;
     public static final String PREFERENCES_HAS_LOGIN = "SharedPreferencesLoginInitiate" + BuildConfig.APPLICATION_ID;
+
+    public static final String DEFAULT_VALUE_DATE_OF_BIRTH = "1970-01-01";
 
 
 }

@@ -48,7 +48,8 @@ public interface Services {
 
     @GET("get_matkul.php")
     Call<ResponseMatkul> getMatakuliah(
-            @Query("token") String token
+            @Query("token") String token,
+            @Query("npm") String npm
     );
 
     @GET("get_list_sks.php")

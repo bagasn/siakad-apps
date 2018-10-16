@@ -42,42 +42,64 @@ public class ResponseProfile extends ResponseDefault {
     }
 
     public class Profil {
+
         @SerializedName("npm")
         @Expose
         private String npm;
         @SerializedName("nama")
         @Expose
         private String nama;
-        @SerializedName("tmpt_lahir")
+        @SerializedName("tempat_lahir")
         @Expose
-        private String tmptLahir;
-        @SerializedName("tgl_lahir")
+        private String tempatLahir;
+        @SerializedName("tanggal_lahir")
         @Expose
-        private String tglLahir;
+        private String tanggalLahir;
         @SerializedName("jenis_kelamin")
         @Expose
         private String jenisKelamin;
         @SerializedName("alamat")
         @Expose
         private String alamat;
+        @SerializedName("agama")
+        @Expose
+        private String agama;
+        @SerializedName("telepon")
+        @Expose
+        private String telepon;
         @SerializedName("email")
         @Expose
         private String email;
-        @SerializedName("link_foto")
+        @SerializedName("stat_mar")
         @Expose
-        private String linkFoto;
-        @SerializedName("tahun_akademik")
+        private String statMar;
+        @SerializedName("photo")
         @Expose
-        private String tahunAkademik;
-        @SerializedName("semester")
+        private String photo;
+        @SerializedName("tahun_masuk")
         @Expose
-        private String semester;
-        @SerializedName("fakultas")
+        private String tahunMasuk;
+        @SerializedName("nama_prodi")
         @Expose
-        private String fakultas;
-        @SerializedName("prodi")
+        private String namaProdi;
+        @SerializedName("handphone")
         @Expose
-        private String prodi;
+        private String handphone;
+        @SerializedName("sekolah_asal")
+        @Expose
+        private String sekolahAsal;
+        @SerializedName("alamat_sekolah")
+        @Expose
+        private String alamatSekolah;
+        @SerializedName("pt_asal")
+        @Expose
+        private String ptAsal;
+        @SerializedName("alamat_pt")
+        @Expose
+        private String alamatPt;
+        @SerializedName("no_ijazah")
+        @Expose
+        private String noIjazah;
 
         public String getNpm() {
             return npm;
@@ -95,20 +117,20 @@ public class ResponseProfile extends ResponseDefault {
             this.nama = nama;
         }
 
-        public String getTmptLahir() {
-            return tmptLahir;
+        public String getTempatLahir() {
+            return tempatLahir;
         }
 
-        public void setTmptLahir(String tmptLahir) {
-            this.tmptLahir = tmptLahir;
+        public void setTempatLahir(String tempatLahir) {
+            this.tempatLahir = tempatLahir;
         }
 
-        public String getTglLahir() {
-            return tglLahir;
+        public String getTanggalLahir() {
+            return tanggalLahir;
         }
 
-        public void setTglLahir(String tglLahir) {
-            this.tglLahir = tglLahir;
+        public void setTanggalLahir(String tanggalLahir) {
+            this.tanggalLahir = tanggalLahir;
         }
 
         public String getJenisKelamin() {
@@ -127,6 +149,22 @@ public class ResponseProfile extends ResponseDefault {
             this.alamat = alamat;
         }
 
+        public String getAgama() {
+            return agama;
+        }
+
+        public void setAgama(String agama) {
+            this.agama = agama;
+        }
+
+        public String getTelepon() {
+            return telepon;
+        }
+
+        public void setTelepon(String telepon) {
+            this.telepon = telepon;
+        }
+
         public String getEmail() {
             return email;
         }
@@ -135,67 +173,119 @@ public class ResponseProfile extends ResponseDefault {
             this.email = email;
         }
 
-        public String getLinkFoto() {
-            return linkFoto;
+        public String getStatMar() {
+            return statMar;
         }
 
-        public void setLinkFoto(String linkFoto) {
-            this.linkFoto = linkFoto;
+        public void setStatMar(String statMar) {
+            this.statMar = statMar;
         }
 
-        public String getTahunAkademik() {
-            return tahunAkademik;
+        public String getPhoto() {
+            return photo;
         }
 
-        public void setTahunAkademik(String tahunAkademik) {
-            this.tahunAkademik = tahunAkademik;
+        public void setPhoto(String photo) {
+            this.photo = photo;
         }
 
-        public String getSemester() {
-            return semester;
+        public String getTahunMasuk() {
+            return tahunMasuk;
         }
 
-        public void setSemester(String semester) {
-            this.semester = semester;
+        public void setTahunMasuk(String tahunMasuk) {
+            this.tahunMasuk = tahunMasuk;
         }
 
-        public String getFakultas() {
-            return fakultas;
+        public String getNamaProdi() {
+            return namaProdi;
         }
 
-        public void setFakultas(String fakultas) {
-            this.fakultas = fakultas;
+        public void setNamaProdi(String namaProdi) {
+            this.namaProdi = namaProdi;
         }
 
-        public String getProdi() {
-            return prodi;
+        public String getHandphone() {
+            return handphone;
         }
 
-        public void setProdi(String prodi) {
-            this.prodi = prodi;
+        public void setHandphone(String handphone) {
+            this.handphone = handphone;
+        }
+
+        public String getSekolahAsal() {
+            return sekolahAsal;
+        }
+
+        public void setSekolahAsal(String sekolahAsal) {
+            this.sekolahAsal = sekolahAsal;
+        }
+
+        public String getAlamatSekolah() {
+            return alamatSekolah;
+        }
+
+        public void setAlamatSekolah(String alamatSekolah) {
+            this.alamatSekolah = alamatSekolah;
+        }
+
+        public String getPtAsal() {
+            return ptAsal;
+        }
+
+        public void setPtAsal(String ptAsal) {
+            this.ptAsal = ptAsal;
+        }
+
+        public String getAlamatPt() {
+            return alamatPt;
+        }
+
+        public void setAlamatPt(String alamatPt) {
+            this.alamatPt = alamatPt;
+        }
+
+        public String getNoIjazah() {
+            return noIjazah;
+        }
+
+        public void setNoIjazah(String noIjazah) {
+            this.noIjazah = noIjazah;
         }
     }
 
     public class Kelas {
-        @SerializedName("nama_kelas")
+
+        @SerializedName("nama_kelompok")
         @Expose
-        private String namaKelas;
+        private String namaKelompok;
+        @SerializedName("tahun")
+        @Expose
+        private String tahun;
         @SerializedName("semester")
         @Expose
         private String semester;
-        @SerializedName("pembimbing")
+        @SerializedName("dpa")
         @Expose
-        private String pembimbing;
-        @SerializedName("id-dosen")
+        private String dpa;
+        @SerializedName("dpa_id")
         @Expose
-        private String idDosen;
+        private String dpaId;
 
-        public String getNamaKelas() {
-            return namaKelas;
+        public String getNamaKelompok() {
+            return namaKelompok;
         }
 
-        public void setNamaKelas(String namaKelas) {
-            this.namaKelas = namaKelas;
+        public void setNamaKelompok(String namaKelompok) {
+            this.namaKelompok = namaKelompok;
+        }
+
+        public String getTahun() {
+            return tahun;
+        }
+
+        public void setTahun(String tahun) {
+            this.tahun = tahun;
         }
 
         public String getSemester() {
@@ -206,20 +296,20 @@ public class ResponseProfile extends ResponseDefault {
             this.semester = semester;
         }
 
-        public String getPembimbing() {
-            return pembimbing;
+        public String getDpa() {
+            return dpa;
         }
 
-        public void setPembimbing(String pembimbing) {
-            this.pembimbing = pembimbing;
+        public void setDpa(String dpa) {
+            this.dpa = dpa;
         }
 
-        public String getIdDosen() {
-            return idDosen;
+        public String getDpaId() {
+            return dpaId;
         }
 
-        public void setIdDosen(String idDosen) {
-            this.idDosen = idDosen;
+        public void setDpaId(String dpaId) {
+            this.dpaId = dpaId;
         }
     }
 

@@ -1,7 +1,7 @@
 package com.bagasnasution.lecturesapp;
 
 
-import android.app.ProgressDialog;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,12 +9,9 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethod;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -143,8 +140,6 @@ public class LoginActivity extends AppActivity implements View.OnClickListener {
         user.setNama(data.getNama());
         user.setNpm(data.getNim());
         user.setEmail(data.getEmail());
-        user.setFakultas(data.getFakultas());
-        user.setProdi(data.getProdi());
         user.setJenisKelamin(data.getJenisKelamin());
         user.setLinkFoto(data.getLinkFoto());
 

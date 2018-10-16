@@ -36,15 +36,6 @@ public class ResponseLogin extends ResponseDefault {
         @SerializedName("jenis-kelamin")
         @Expose
         private String jenisKelamin;
-        @SerializedName("semester")
-        @Expose
-        private String semester;
-        @SerializedName("fakultas")
-        @Expose
-        private String fakultas;
-        @SerializedName("prodi")
-        @Expose
-        private String prodi;
         @SerializedName("link_foto")
         @Expose
         private String linkFoto;
@@ -79,30 +70,6 @@ public class ResponseLogin extends ResponseDefault {
 
         public void setJenisKelamin(String jenisKelamin) {
             this.jenisKelamin = jenisKelamin;
-        }
-
-        public String getSemester() {
-            return semester;
-        }
-
-        public void setSemester(String semester) {
-            this.semester = semester;
-        }
-
-        public String getFakultas() {
-            return fakultas;
-        }
-
-        public void setFakultas(String fakultas) {
-            this.fakultas = fakultas;
-        }
-
-        public String getProdi() {
-            return prodi;
-        }
-
-        public void setProdi(String prodi) {
-            this.prodi = prodi;
         }
 
         public String getLinkFoto() {

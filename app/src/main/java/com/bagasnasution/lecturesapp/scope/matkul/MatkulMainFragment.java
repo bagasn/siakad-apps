@@ -33,6 +33,9 @@ public class MatkulMainFragment extends AppFragment {
     private SwipeRefreshLayout swipe_refresh;
     private ListView list_content;
 
+    private TextView textTotalMatkul;
+    private TextView textTotalSks;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -40,6 +43,9 @@ public class MatkulMainFragment extends AppFragment {
 
         swipe_refresh = (SwipeRefreshLayout) v.findViewById(R.id.swipe_refresh);
         list_content = (ListView) v.findViewById(R.id.list_content);
+
+        textTotalMatkul = (TextView) v.findViewById(R.id.text_totalMatkul);
+        textTotalSks = (TextView) v.findViewById(R.id.text_totalSks);
 
         swipeDefaultColor(swipe_refresh);
         swipe_refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -100,6 +106,9 @@ public class MatkulMainFragment extends AppFragment {
                             new MataKuliahAdapter(getContext(), data.getListMatkul());
 
                     list_content.setAdapter(adapter);
+
+                    countMataKuliah(data.getListMatkul());
+
                     return;
                 }
             }
@@ -107,21 +116,22 @@ public class MatkulMainFragment extends AppFragment {
 
         AppHelper.showToast(getContext(), "Tidak ada data!");
     }
-//
-//    private void addToTable(ResponseMatkul.MatKul matKul) {
-//        TableRow vRow = (TableRow) LayoutInflater.from(getContext())
-//                .inflate(R.layout.row_mata_kuliah, table_content, false);
-//
-//        if (vRow != null) {
-//            ((TextView) vRow.findViewById(R.id.text_kode))
-//                    .setText(matKul.getKode());
-//            ((TextView) vRow.findViewById(R.id.text_matkul))
-//                    .setText(matKul.getNama());
-//            ((TextView) vRow.findViewById(R.id.text_sks))
-//                    .setText(matKul.getSks());
-//
-//            table_content.addView(vRow);
-//        }
-//    }
+
+    private void countMataKuliah(List<ResponseMatkul.MatKul> list) {
+
+        int matakuliah = 0;
+        int sks = 0;
+
+        for (ResponseMatkul.MatKul val : list) {
+            matakuliah++;
+            if (val.getSks() > 0) {
+                sks += val.getSks();
+            }
+        }
+
+        textTotalMatkul.setText(String.valueOf(matakuliah));
+        textTotalSks.setText(String.valueOf(sks));
+
+    }
 
 }

@@ -2,12 +2,14 @@ package com.bagasnasution.lecturesapp.scope.profil;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bagasnasution.lecturesapp.R;
+import com.bagasnasution.lecturesapp.app.config.Config;
 import com.bagasnasution.lecturesapp.app.connect.ConnectRetrofit;
 import com.bagasnasution.lecturesapp.app.engine.AppActivity;
 import com.bagasnasution.lecturesapp.app.engine.AppHelper;
@@ -15,10 +17,17 @@ import com.bagasnasution.lecturesapp.app.model.response.ResponseProfile;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import retrofit2.Call;
 import retrofit2.Response;
 
 public class ProfilActivity extends AppActivity {
+
+    private static final String TAG = "ProfilActivity";
 
     private ImageView image_profil;
     private TextView text_npm;
@@ -29,8 +38,6 @@ public class ProfilActivity extends AppActivity {
     private TextView text_alamat;
     private TextView text_email;
     private TextView text_tahun;
-    private TextView text_smt;
-    private TextView text_fakultas;
     private TextView text_prodi;
     private TextView text_kelas;
     private TextView text_kelas_smt;
@@ -55,8 +62,6 @@ public class ProfilActivity extends AppActivity {
         text_alamat = findViewById(R.id.text_alamat);
         text_email = findViewById(R.id.text_email);
         text_tahun = findViewById(R.id.text_tahun);
-        text_smt = findViewById(R.id.text_smt);
-        text_fakultas = findViewById(R.id.text_fakultas);
         text_prodi = findViewById(R.id.text_prodi);
         text_kelas = findViewById(R.id.text_nama_kelas);
         text_kelas_smt = findViewById(R.id.text_kelas_smt);
@@ -115,17 +120,35 @@ public class ProfilActivity extends AppActivity {
 
             text_npm.setText(data.getNpm());
             text_nama.setText(data.getNama());
-            text_tempatL.setText(data.getTmptLahir());
-            text_tglL.setText(data.getTglLahir());
-            text_jenisK.setText((data.getJenisKelamin().equals("L") ? "Laki-laki" : "Perempuan"));
+            text_tempatL.setText(data.getTempatLahir());
+
+            try {
+                String tanggal = data.getTanggalLahir();
+                if (!tanggal.equalsIgnoreCase(Config.DEFAULT_VALUE_DATE_OF_BIRTH)) {
+                    Date date = new SimpleDateFormat("yyyy-MM-dd", Locale.US)
+                            .parse(tanggal);
+                    tanggal = new SimpleDateFormat("d MMMM yyyy", Locale.getDefault())
+                            .format(date);
+                    text_tglL.setText(tanggal);
+                }
+            } catch (ParseException e) {
+                Log.e(TAG, "setDataProfil: ", e);
+            }
+
+            String jenisKelamin = data.getJenisKelamin();
+            if (jenisKelamin.equalsIgnoreCase("L")) {
+                text_jenisK.setText("Laki-laki");
+            } else if (jenisKelamin.equalsIgnoreCase("P")) {
+                text_jenisK.setText("Perempuan");
+            }
+
             text_alamat.setText(data.getAlamat());
             text_email.setText(data.getEmail());
-            text_smt.setText(data.getSemester());
-            text_tahun.setText(data.getTahunAkademik());
-            text_fakultas.setText(data.getFakultas());
-            text_prodi.setText(data.getProdi());
 
-            String link = data.getLinkFoto();
+            text_tahun.setText(data.getTahunMasuk());
+            text_prodi.setText(data.getNamaProdi());
+
+            String link = data.getPhoto();
             if (!link.isEmpty()) {
                 Picasso.get()
                         .load(link)
@@ -142,9 +165,12 @@ public class ProfilActivity extends AppActivity {
     private void setDataKelas(ResponseProfile.Kelas data) {
         if (data != null) {
 
-            text_kelas.setText(data.getNamaKelas());
-            text_kelas_smt.setText(data.getSemester());
-            text_dospem.setText(data.getPembimbing());
+            text_kelas.setText(data.getNamaKelompok());
+
+            String semester = "Semester " + data.getSemester();
+            text_kelas_smt.setText(semester);
+
+            text_dospem.setText(data.getDpa());
 
         }
     }

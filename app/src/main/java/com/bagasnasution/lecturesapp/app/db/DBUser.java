@@ -16,8 +16,6 @@ public class DBUser {
     public static final String FIELD_NAMA = "nama";
     public static final String FIELD_EMAIL = "email";
     public static final String FIELD_JENIS_KELAMIN = "jenis_kel";
-    public static final String FIELD_FAKULTAS = "fakultas";
-    public static final String FIELD_PRODI = "prodi";
     public static final String FIELD_LINK_FOTO = "link_foto";
 
     public static final String QUERY_CREATE_TABLE_USER = "CREATE TABLE IF NOT EXISTS `" + TABLE_NAME + "` ("
@@ -26,8 +24,6 @@ public class DBUser {
             + FIELD_NAMA + " TEXT, "
             + FIELD_EMAIL + " TEXT, "
             + FIELD_JENIS_KELAMIN + " TEXT, "
-            + FIELD_FAKULTAS + " TEXT, "
-            + FIELD_PRODI + " TEXT, "
             + FIELD_LINK_FOTO + " TEXT "
             + ")";
 
@@ -37,8 +33,6 @@ public class DBUser {
             FIELD_NAMA,
             FIELD_EMAIL,
             FIELD_JENIS_KELAMIN,
-            FIELD_FAKULTAS,
-            FIELD_PRODI,
             FIELD_LINK_FOTO
     };
 
@@ -63,8 +57,6 @@ public class DBUser {
         cv.put("nama", user.getNama());
         cv.put("email", user.getEmail());
         cv.put("jenis_kel", user.getJenisKelamin());
-        cv.put("fakultas", user.getFakultas());
-        cv.put("prodi", user.getProdi());
         cv.put("link_foto", user.getLinkFoto());
 
         return cv;
@@ -87,8 +79,6 @@ public class DBUser {
         private String nama;
         private String email;
         private String jenisKelamin;
-        private String fakultas;
-        private String prodi;
         private String linkFoto;
 
         public String getId() {
@@ -129,22 +119,6 @@ public class DBUser {
 
         public void setJenisKelamin(String jenisKelamin) {
             this.jenisKelamin = jenisKelamin;
-        }
-
-        public String getFakultas() {
-            return fakultas;
-        }
-
-        public void setFakultas(String fakultas) {
-            this.fakultas = fakultas;
-        }
-
-        public String getProdi() {
-            return prodi;
-        }
-
-        public void setProdi(String prodi) {
-            this.prodi = prodi;
         }
 
         public String getLinkFoto() {

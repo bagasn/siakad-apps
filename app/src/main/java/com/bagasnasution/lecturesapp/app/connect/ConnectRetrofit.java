@@ -30,7 +30,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ConnectRetrofit {
-    private static final int timeout = 120;
+    private static final int timeout = 210;
     private static final String BASE_URL = Config.BASE_URL;
     private static final String TOKEN = Config.API_TOKEN;
 
@@ -167,8 +167,9 @@ public class ConnectRetrofit {
     }
 
     public static synchronized void getMatakuliah(Context context, final OnResponse<ResponseMatkul> listener) {
+        String username = DBUser.getDataUser(context).getNpm();
 
-        getConnection().getMatakuliah(TOKEN)
+        getConnection().getMatakuliah(TOKEN, username)
                 .enqueue(new Callback<ResponseMatkul>() {
                     @Override
                     public void onResponse(Call<ResponseMatkul> call, Response<ResponseMatkul> response) {

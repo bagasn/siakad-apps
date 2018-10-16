@@ -232,56 +232,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Semester"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/text_smt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:maxLines="2"
-                    android:padding="5dp"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Fakultas"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/text_fakultas"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:maxLines="2"
-                    android:padding="5dp"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:text="Program Studi"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
                     android:textSize="12sp"
@@ -416,7 +366,8 @@
         android:clickable="true"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:gravity="center">
+        android:gravity="center"
+        android:visibility="gone">
 
         <ProgressBar
             android:layout_width="46dp"

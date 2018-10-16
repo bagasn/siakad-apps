@@ -31,10 +31,10 @@ public class ResponseMatkul extends ResponseDefault {
         private String nama;
         @SerializedName("semester")
         @Expose
-        private String semester;
+        private Integer semester;
         @SerializedName("sks")
         @Expose
-        private String sks;
+        private Integer sks;
 
         public String getKode() {
             return kode;
@@ -52,19 +52,19 @@ public class ResponseMatkul extends ResponseDefault {
             this.nama = nama;
         }
 
-        public String getSemester() {
+        public Integer getSemester() {
             return semester;
         }
 
-        public void setSemester(String semester) {
+        public void setSemester(Integer semester) {
             this.semester = semester;
         }
 
-        public String getSks() {
+        public Integer getSks() {
             return sks;
         }
 
-        public void setSks(String sks) {
+        public void setSks(Integer sks) {
             this.sks = sks;
         }
     }

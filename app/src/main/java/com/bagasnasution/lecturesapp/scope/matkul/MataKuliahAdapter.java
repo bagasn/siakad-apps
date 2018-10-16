@@ -38,8 +38,14 @@ public class MataKuliahAdapter extends ArrayAdapter<ResponseMatkul.MatKul> {
                 .setText(data.getKode());
         ((TextView) v.findViewById(R.id.text_matkul))
                 .setText(data.getNama());
+
+        String sks = data.getSks().toString();
         ((TextView) v.findViewById(R.id.text_sks))
-                .setText(data.getSks());
+                .setText(sks);
+
+        String smt = data.getSemester().toString();
+        ((TextView) v.findViewById(R.id.text_smt))
+                .setText(smt);
 
         return v;
     }
