@@ -13,17 +13,17 @@ import java.util.List;
 public class ResponseNilai extends ResponseDefault {
     @SerializedName("data")
     @Expose
-    private List<DataSks> data;
+    private List<DataNilai> data;
 
-    public List<DataSks> getData() {
+    public List<DataNilai> getData() {
         return data;
     }
 
-    public void setData(List<DataSks> data) {
+    public void setData(List<DataNilai> data) {
         this.data = data;
     }
 
-    public class DataSks implements Serializable {
+    public class DataNilai implements Serializable {
         @SerializedName("kode-matkul")
         @Expose
         private String kodeMatkul;
@@ -35,7 +35,7 @@ public class ResponseNilai extends ResponseDefault {
         private Integer sks;
         @SerializedName("nilai")
         @Expose
-        private Integer nilai;
+        private Double nilai;
         @SerializedName("nilai-akdm")
         @Expose
         private String nilaiAkdm;
@@ -45,9 +45,6 @@ public class ResponseNilai extends ResponseDefault {
         @SerializedName("status")
         @Expose
         private Integer statusLulus;
-        @SerializedName("mengulang")
-        @Expose
-        private Boolean mengulan;
 
         public String getKodeMatkul() {
             return kodeMatkul;
@@ -73,11 +70,11 @@ public class ResponseNilai extends ResponseDefault {
             this.sks = sks;
         }
 
-        public Integer getNilai() {
+        public Double getNilai() {
             return nilai;
         }
 
-        public void setNilai(Integer nilai) {
+        public void setNilai(Double nilai) {
             this.nilai = nilai;
         }
 
@@ -103,14 +100,6 @@ public class ResponseNilai extends ResponseDefault {
 
         public void setStatusLulus(Integer statusLulus) {
             this.statusLulus = statusLulus;
-        }
-
-        public Boolean getMengulan() {
-            return mengulan;
-        }
-
-        public void setMengulan(Boolean mengulan) {
-            this.mengulan = mengulan;
         }
     }
 }

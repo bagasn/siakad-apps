@@ -62,8 +62,13 @@ public class JadwalAdapter extends ArrayAdapter<ResponseJadwal.ListJadwal> {
                 .setText(item.getMatkul());
         ((TextView) child.findViewById(R.id.text_jadwal_waktu))
                 .setText(item.getWaktu());
-        ((TextView) child.findViewById(R.id.text_jadwal_ruang))
-                .setText(item.getKelas());
+
+        String ruang = item.getKelas();
+
+        if (ruang != null)
+            ((TextView) child.findViewById(R.id.text_jadwal_ruang))
+                    .setText(item.getKelas());
+
         ((TextView) child.findViewById(R.id.text_jadwal_dosen))
                 .setText(item.getDosen());
 

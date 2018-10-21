@@ -15,12 +15,12 @@ public class Config {
     /** Backend Declaration */
 
     /* Real */
-//    public static final String BASE_URL = "https://siakad-skripsi.000webhostapp.com/";
+    public static final String BASE_URL = "https://siakad-skripsi.000webhostapp.com/";
 
     /* Dummy */
 
 //  office
-    public static final String BASE_URL = "http://10.0.2.2:8080/siakad/";
+//    public static final String BASE_URL = "http://10.0.2.2:8080/siakad/";
 //  home
 //    public static final String BASE_URL = "http://10.0.2.2:8080/siakad/";
 //    public static final String BASE_URL = "http://192.168.0.2/siakad/";

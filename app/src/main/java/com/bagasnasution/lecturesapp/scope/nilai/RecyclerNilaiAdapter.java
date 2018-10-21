@@ -1,7 +1,6 @@
 package com.bagasnasution.lecturesapp.scope.nilai;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -21,12 +20,12 @@ import java.util.List;
 
 public class RecyclerNilaiAdapter extends RecyclerView.Adapter<RecyclerNilaiAdapter.SksHolder> {
     private Context context;
-    private List<ResponseNilai.DataSks> data_sks;
+    private List<ResponseNilai.DataNilai> data_sks;
     private OnSksClickListener listener = null;
 
     private static final int RESOURCE_LAYOUT = R.layout.row_sks_item;
 
-    public RecyclerNilaiAdapter(Context context, List<ResponseNilai.DataSks> objects) {
+    public RecyclerNilaiAdapter(Context context, List<ResponseNilai.DataNilai> objects) {
         this.context = context;
         this.data_sks = objects;
     }
@@ -40,7 +39,7 @@ public class RecyclerNilaiAdapter extends RecyclerView.Adapter<RecyclerNilaiAdap
     @Override
     public void onBindViewHolder(SksHolder sksHolder, int i) {
 
-        final ResponseNilai.DataSks data = data_sks.get(i);
+        final ResponseNilai.DataNilai data = data_sks.get(i);
 
         try {
             sksHolder.txvw_no_urut.setText("" + (i + 1));
@@ -107,7 +106,7 @@ public class RecyclerNilaiAdapter extends RecyclerView.Adapter<RecyclerNilaiAdap
     }
 
     public interface OnSksClickListener {
-        void onSksClicked(View v, ResponseNilai.DataSks data);
+        void onSksClicked(View v, ResponseNilai.DataNilai data);
     }
 
 }

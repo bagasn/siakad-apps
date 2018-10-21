@@ -60,7 +60,7 @@ public class NilaiFragment extends AppFragment implements RecyclerNilaiAdapter.O
 
         for (int i = 0; i < countMk; i++) {
             try {
-                ResponseNilai.DataSks item = data.getData().get(i);
+                ResponseNilai.DataNilai item = data.getData().get(i);
 
                 String temp_akdm = item.getNilaiAkdm();
 
@@ -164,7 +164,7 @@ public class NilaiFragment extends AppFragment implements RecyclerNilaiAdapter.O
     }
 
     @Override
-    public void onSksClicked(View v, ResponseNilai.DataSks data) {
+    public void onSksClicked(View v, ResponseNilai.DataNilai data) {
 
     }
 }
