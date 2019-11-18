@@ -18,13 +18,12 @@ public class Config {
     public static final String BASE_URL = "https://siakad-skripsi.000webhostapp.com/";
 
     /* Dummy */
-
 //  office
-//    public static final String BASE_URL = "http://10.0.2.2:8080/b/demo_app/ta-api/";
+//    public static final String BASE_URL = "http://10.0.2.2:8080/SiakadWeb/";
 //  home
 //    public static final String BASE_URL = "http://10.0.2.2:8080/b/demo_app/ta-api/";
 //  linux
-//    public static final String BASE_URL = "http://192.168.0.2/b/demo/ta-api/";
+//    public static final String BASE_URL = "http://192.168.0.2:8080/SiakadWeb/";
 
 
     public static final String API_TOKEN = "3add0f3378dc0fba4bbf2fab59a312cc";

@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 def versionFile = rootProject.file("app/version.properties")
-def int verCode
-def int verPrimary, verSecondary, verOptional
-def String verName
+int verCode
+int verPrimary, verSecondary, verOptional
+String verName
 
 if (versionFile.canRead()) {
-    def versionProperty = new Properties();
+    def versionProperty = new Properties()
     versionProperty.load(new FileInputStream(versionFile))
     verCode = versionProperty['VERSION_CODE'].toInteger()
     verPrimary = versionProperty['VN_PRIMARY'].toInteger()
@@ -68,7 +68,7 @@ ext.autoIncrementVersionForDebug = {
     if (versionFile.canRead()) {
         def versionProperty = new Properties()
         versionProperty.load(new FileInputStream(versionFile))
-        def int versionInc = versionProperty['VN_OPTIONAL'].toInteger() + 1
+        int versionInc = versionProperty['VN_OPTIONAL'].toInteger() + 1
         versionProperty['VN_OPTIONAL'] = versionInc.toString()
         versionProperty.store(versionFile.newWriter(), null)
     } else {
@@ -80,10 +80,11 @@ ext.autoIncrementVersionRelease = {
     if (versionFile.canRead()) {
         def versionProperty = new Properties()
         versionProperty.load(new FileInputStream(versionFile))
-        def int versionInc = versionProperty['VN_SECONDARY'].toInteger() + 1
-        def int toZero = 0
+        int versionInc = versionProperty['VN_SECONDARY'].toInteger() + 1
+        int toZero = 0
         versionProperty['VN_OPTIONAL'] = toZero.toString()
         versionProperty['VN_SECONDARY'] = versionInc.toString()
+        versionProperty['VERSION_CODE'] = versionInc.toString()
         versionProperty.store(versionFile.newWriter(), null)
     } else {
 //        throw new GradleException("Auto increment for release got some problem")

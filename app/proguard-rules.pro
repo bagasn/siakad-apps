@@ -24,9 +24,9 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
--dontwarn okhttp3.*
--dontwarn okio.*
--dontwarn retrofit2.*
+-dontwarn okhttp3.**
+-dontwarn okio.**
+-dontwarn retrofit2.**
 
 -keep public class * implements com.bumptech.glide.module.GlideModule
 -keep public class * extends com.bumptech.glide.module.AppGlideModule
